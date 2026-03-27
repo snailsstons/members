@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>SnailsAdmin | v10.0 (Member & Guardian)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="hefte.js"></script>
+    <style>
+        :root { --gold: #d4af37; --bg: #000; --card: #111; --success: #28a745; --danger: #ff4444; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
+        body { 
+            background: var(--bg); color: #eee; font-family: 'Inter', sans-serif; margin: 0; padding: 0; 
+            background-image: url('blatt_textur.jpg'); background-size: cover; 
+            background-attachment: fixed; background-blend-mode: multiply;
+        }
+        .sticky-top { position: sticky; top: 0; background: rgba(0,0,0,0.96); z-index: 1000; padding: 15px; border-bottom: 1px solid #222; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { font-family: 'Playfair Display', serif; color: var(--gold); margin: 0; font-size: 1.8rem; text-align: center; }
+        
+        .card { background: var(--card); border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid #222; }
+        .card h2 { margin-top: 0; font-size: 0.9rem; text-transform: uppercase; color: var(--gold); letter-spacing: 1px; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+        
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        input, select, textarea { width: 100%; background: #000; border: 1px solid #333; color: #fff; padding: 12px; border-radius: 8px; font-size: 0.9rem; }
+        label { display: block; font-size: 0.7rem; color: #666; text-transform: uppercase; margin-bottom: 5px; font-weight: 700; }
+        
+        .btn { background: var(--gold); color: #000; border: none; padding: 12px; border-radius: 8px; font-weight: 900; text-transform: uppercase; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-sec { background: #222; color: #fff; font-size: 0.7rem; }
+        .btn-lock { background: transparent; border: 1px solid #444; color: #666; padding: 4px 8px; font-size: 0.6rem; border-radius: 4px; }
+        .btn-lock.active { background: var(--danger); border-color: #fff; color: #fff; }
+
+        .panel-row { background: #080808; border: 1px solid #222; border-radius: 8px; padding: 12px; margin-bottom: 10px; display: grid; grid-template-columns: 120px 1fr 100px; gap: 15px; align-items: start; }
+        .panel-meta { color: var(--gold); font-weight: 900; font-size: 0.65rem; display: flex; align-items: center; gap: 10px; }
+        
+        #status-msg { position: fixed; bottom: 0; left: 0; right: 0; background: var(--success); color: #fff; padding: 10px; text-align: center; font-weight: 700; transform: translateY(100%); transition: 0.3s; z-index: 2000; }
+        #status-msg.show { transform: translateY(0); }
+        .hidden { display: none; }
+        
+        /* Member Table */
+        table { width: 100%; border-collapse: collapse; font-size: 0.75rem; margin-top: 10px; }
+        th { text-align: left; color: var(--gold); padding: 8px; border-bottom: 1px solid #333; }
+        td { padding: 8px; border-bottom: 1px solid #111; }
+    </style>
+</head>
+<body>
+
+<div id="status-msg">Info-Meldung</div>
+
+<div class="sticky-top">
+    <h1>SnailsAdmin</h1>
+    <div style="display:flex; gap:10px; margin-top:15px; max-width:800px; margin-left:auto; margin-right:auto;">
+        <select id="heft-select" onchange="loadHeft(this.value)"></select>
+        <button class="btn btn-sec" style="width:auto; padding: 0 20px;">+</button>
+    </div>
+</div>
+
+<div class="container">
+    
+    <div class="card">
+        <h2>Mitglieder-Liste (members.md) <button class="btn-lock" style="font-size:0.5rem;" onclick="document.getElementById('member-file').click()">IMPORT .MD</button></h2>
+        <input type="file" id="member-file" class="hidden" accept=".md" onchange="importMembers(this)">
+        <div id="member-manager">
+            <div class="grid" style="grid-template-columns: 1fr 1fr 1fr 1fr 50px; margin-bottom:10px;">
+                <input type="text" id="m-token" placeholder="Token">
+                <input type="date" id="m-von">
+                <input type="date" id="m-bis">
+                <select id="m-level">
+                    <option value="bronze">Bronze</option>
+                    <option value="silver">Silver</option>
+                    <option value="gold">Gold</option>
+                </select>
+                <button class="btn" onclick="addMember()">+</button>
+            </div>
+            <table id="member-table">
+                <thead><tr><th>Token</th><th>Von</th><th>Bis</th><th>Level</th><th></th></tr></thead>
+                <tbody></tbody>
+            </table>
+            <button class="btn" style="margin-top:15px; background: var(--success);" onclick="exportMembers()">💾 MEMBERS.MD EXPORTIEREN & HOCHLADEN</button>
+            <div id="export-reminder" style="display:none; margin-top:10px; padding:10px; background:#1a1a00; border:1px solid var(--gold); border-radius:8px; font-size:0.75rem; color:var(--gold);">
+                ⚠️ Datei heruntergeladen! Jetzt <strong>members.md auf den Server hochladen</strong> – sonst kann der neue Member sich nicht einloggen.
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Heft Meta-Daten <button id="heft-lock-btn" class="btn-lock" onclick="toggleHeftLock()">🔒 LOCK HEFT</button></h2>
+        <div class="grid" style="grid-template-columns: 80px 1fr;">
+            <div><label>ID</label><input type="text" id="h-id" readonly></div>
+            <div><label>Titel</label><input type="text" id="h-titel" oninput="updateMeta()"></div>
+        </div>
+        <div style="margin-top:15px;">
+            <label>Teaser & Cover Story</label>
+            <textarea id="h-teaser" rows="3" oninput="updateMeta()"></textarea>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Story Import</h2>
+        <div style="background: #080808; border: 2px dashed #333; padding: 20px; border-radius: 8px; text-align: center;">
+            <input type="file" id="md-file" class="hidden" accept=".md" onchange="importStoryMD(this)">
+            <button class="btn btn-sec" onclick="document.getElementById('md-file').click()">STORY DATEI WÄHLEN</button>
+            <div id="import-status" style="display:none; margin-top:10px; padding:10px; background:#0a1a00; border:1px solid var(--success); border-radius:8px; font-size:0.75rem; color:var(--success);"></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Panel-Vorschau & Guardian Control</h2>
+        <div id="preview-list"></div>
+    </div>
+
+    <div class="card">
+        <h2>⚙️ GitHub Setup</h2>
+        <div class="grid" style="grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:10px;">
+            <div>
+                <label>Repo (user/repo)</label>
+                <input type="text" id="gh-repo" placeholder="snailsstons/members">
+            </div>
+            <div>
+                <label>Branch</label>
+                <input type="text" id="gh-branch" placeholder="main">
+            </div>
+        </div>
+        <div style="margin-bottom:10px;">
+            <label>Personal Access Token</label>
+            <input type="password" id="gh-token" placeholder="ghp_...">
+        </div>
+        <div style="display:flex; gap:10px;">
+            <button class="btn btn-sec" style="flex:1;" onclick="saveGHConfig()">💾 SPEICHERN</button>
+            <button class="btn btn-sec" style="flex:1;" onclick="testGHConnection()">🔌 VERBINDUNG TESTEN</button>
+        </div>
+        <div id="gh-status" style="display:none; margin-top:10px; padding:8px; border-radius:8px; font-size:0.75rem;"></div>
+    </div>
+
+    <div class="card">
+        <h2>Export & GitHub Push</h2>
+        <div style="display:flex; gap:10px; margin-bottom:10px;">
+            <button class="btn" style="flex:1;" onclick="pushHeft(currentHeftId)">🚀 HEFT → GITHUB</button>
+            <button class="btn btn-sec" style="flex:1;" onclick="exportHeft(currentHeftId)">💾 DOWNLOAD</button>
+        </div>
+        <button class="btn" style="background:var(--success); margin-bottom:10px;" onclick="pushMembers()">🚀 MEMBERS.MD → GITHUB</button>
+        <div id="push-status" style="display:none; margin-top:10px; padding:10px; border-radius:8px; font-size:0.75rem;"></div>
+        <button class="btn btn-sec" style="margin-top:10px; background:var(--danger);" onclick="clearLocal()">RESET & BLIND SYNC</button>
+    </div>
+</div>
+
+<script>
+    let currentHeftId = "0";
+    let members = [];
+
+    async function init() {
+        const local = localStorage.getItem('snail_v50_data');
+        const localMembers = localStorage.getItem('snail_members');
+        
+        if(!local) await blindSync(); 
+        else Object.assign(hefte, JSON.parse(local));
+        
+        if(localMembers) members = JSON.parse(localMembers);
+        
+        renderHeftSelector();
+        renderMembers();
+        loadGHConfig();
+    }
+
+    async function blindSync() {
+        let i = 0, errors = 0;
+        while (errors <= 1) {
+            try { await loadScript(`data/heft${i}.js?v=${Date.now()}`); i++; errors = 0; }
+            catch (err) { i++; errors++; }
+            if(i > 150) break;
+        }
+        saveLocal();
+    }
+
+    function loadScript(src) {
+        return new Promise((resolve, reject) => {
+            const s = document.createElement('script');
+            s.src = src; s.onload = resolve; s.onerror = reject;
+            document.head.appendChild(s);
+        });
+    }
+
+    function renderHeftSelector() {
+        const sel = document.getElementById('heft-select');
+        sel.innerHTML = "";
+        const ids = Object.keys(hefte).sort((a,b) => parseInt(a)-parseInt(b));
+        ids.forEach(id => {
+            const opt = document.createElement('option');
+            opt.value = id; opt.textContent = `Heft ${id}: ${hefte[id].titel || ''}`;
+            sel.appendChild(opt);
+        });
+        if(ids.length > 0) loadHeft(ids[0]);
+    }
+
+    function loadHeft(id) {
+        currentHeftId = id;
+        const h = hefte[id];
+        if(!h) return;
+        document.getElementById('h-id').value = id;
+        document.getElementById('h-titel').value = h.titel || '';
+        document.getElementById('h-teaser').value = h.teaser || '';
+        
+        const btn = document.getElementById('heft-lock-btn');
+        btn.classList.toggle('active', !!h.members);
+        btn.innerText = h.members ? "🔒 LOCKED" : "🔓 FREE";
+        
+        renderPreview(id);
+    }
+
+    function renderPreview(id) {
+        const h = hefte[id];
+        const container = document.getElementById('preview-list');
+        if(!h || !h.seiten) { container.innerHTML = ''; return; }
+
+        let html = "";
+        h.seiten.forEach((seite, sIdx) => {
+            html += `
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
+                    <div style="color:var(--gold); font-size:0.7rem; font-weight:900;">SEITE ${seite.nummer || sIdx + 1}</div>
+                    <button class="btn-lock ${seite.members ? 'active' : ''}" onclick="togglePageLock(${sIdx})">
+                        ${seite.members ? '🔒 MEMBERS' : '🔓 FREE'}
+                    </button>
+                </div>`;
+            
+            seite.panels.forEach((p, pIdx) => {
+                html += `
+                    <div class="panel-row">
+                        <div class="panel-meta">
+                            P${pIdx + 1}
+                            <button class="btn-lock ${p.members ? 'active' : ''}" style="font-size:0.5rem;" onclick="togglePanelLock(${sIdx}, ${pIdx})">
+                                ${p.members ? '🔒' : '🔓'}
+                            </button>
+                        </div>
+                        <div style="font-size:0.65rem; color:#888;">
+                            <strong>S:</strong> ${p.story || '...'}<br>
+                            <strong>K:</strong> ${p.skript || '...'}
+                        </div>
+                        <button class="btn btn-sec" style="padding:5px;">🎨</button>
+                    </div>`;
+            });
+        });
+        container.innerHTML = html;
+    }
+
+    // --- LOCK LOGIK ---
+    function toggleHeftLock() {
+        const h = hefte[currentHeftId];
+        h.members = !h.members;
+        saveLocal(); loadHeft(currentHeftId);
+    }
+
+    function togglePageLock(sIdx) {
+        const s = hefte[currentHeftId].seiten[sIdx];
+        s.members = !s.members;
+        saveLocal(); renderPreview(currentHeftId);
+    }
+
+    function togglePanelLock(sIdx, pIdx) {
+        const p = hefte[currentHeftId].seiten[sIdx].panels[pIdx];
+        p.members = !p.members;
+        saveLocal(); renderPreview(currentHeftId);
+    }
+
+    // --- MEMBER MANAGEMENT ---
+    // FIX: Level-Wert wird nun mitgespeichert
+    function addMember() {
+        const t = document.getElementById('m-token').value.trim();
+        const v = document.getElementById('m-von').value;
+        const b = document.getElementById('m-bis').value;
+        const l = document.getElementById('m-level').value;
+        if(!t || !v || !b) { showStatus("Token, Von und Bis ausfüllen!"); return; }
+        members.push({ token: t, von: v, bis: b, level: l });
+        document.getElementById('m-token').value = '';
+        renderMembers();
+        saveMembers();
+        // Reminder anzeigen
+        document.getElementById('export-reminder').style.display = 'block';
+        showStatus("Member hinzugefügt – Exportieren nicht vergessen!");
+    }
+
+    // FIX: Level-Anzeige in der Tabelle ergänzt
+    function renderMembers() {
+        const tbody = document.querySelector('#member-table tbody');
+        tbody.innerHTML = '';
+        members.forEach((m, i) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${m.token}</td><td>${m.von}</td><td>${m.bis}</td><td style="text-transform:uppercase; font-size:0.6rem; color:var(--gold)">${m.level || 'bronze'}</td><td><button class="btn-lock active" onclick="delMember(${i})">X</button></td>`;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function delMember(i) {
+        members.splice(i, 1);
+        renderMembers();
+        saveMembers();
+    }
+
+    function importMembers(input) {
+        const file = input.files[0];
+        if(!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const lines = e.target.result.split('\n');
+            members = [];
+            lines.forEach(line => {
+                line = line.trim();
+                if(line.includes(':') && !line.startsWith('#')) {
+                    const parts = line.split(':');
+                    if(parts.length >= 3) {
+                        members.push({ 
+                            token: parts[0].trim(), 
+                            von: parts[1].trim(), 
+                            bis: parts[2].trim(),
+                            level: parts[3] ? parts[3].trim().toLowerCase() : 'bronze'
+                        });
+                    }
+                }
+            });
+            renderMembers();
+            saveMembers();
+        };
+        reader.readAsText(file);
+    }
+
+    // --- MD STORY IMPORT ---
+    function importStoryMD(input) {
+        const file = input.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const text = e.target.result;
+            const result = parseMD(text);
+            if (!result) { showStatus("Fehler beim Parsen der MD-Datei!"); return; }
+
+            const id = result.id;
+            hefte[id] = result.heft;
+            saveLocal();
+            renderHeftSelector();
+
+            // Zu neuem Heft springen
+            document.getElementById('heft-select').value = id;
+            loadHeft(id);
+
+            const statusEl = document.getElementById('import-status');
+            statusEl.style.display = 'block';
+            statusEl.innerHTML = `✅ Heft ${id} importiert: <strong>${result.heft.titel}</strong> – ${result.heft.seiten.length} Seiten, ${result.heft.seiten.reduce((s,p)=>s+p.panels.length,0)} Panels.<br>➡️ Jetzt <strong>💾 HEFT EXPORTIEREN</strong> klicken → als heft${id}.js in /data/ hochladen.`;
+            showStatus(`Heft ${id} geladen – Export nicht vergessen!`);
+        };
+        reader.readAsText(file);
+        input.value = ''; // Reset für erneuten Import
+    }
+
+    function parseMD(text) {
+        const lines = text.split('\n').map(l => l.trimEnd());
+
+        // Heft-Titel und ID aus erster Zeile: ## Heft 23 – Titel [...]
+        const headerMatch = lines[0].match(/##\s+Heft\s+(\d+)\s*[–-]\s*(.+?)(?:\s*\[.*\])?\s*$/);
+        if (!headerMatch) return null;
+        const id = headerMatch[1];
+        const titel = headerMatch[2].trim();
+
+        // Teaser
+        let teaser = '';
+        for (let i = 1; i < Math.min(10, lines.length); i++) {
+            if (lines[i].startsWith('TEASER:')) {
+                teaser = lines[i].replace(/^TEASER:\s*/, '').replace(/#\S+/g, '').trim();
+                break;
+            }
+        }
+
+        const seiten = [];
+        let currentSeite = null;
+        let currentPanel = null;
+        let i = 0;
+
+        while (i < lines.length) {
+            const line = lines[i];
+
+            // Neue Seite: ## Seite N – Titel  ODER  ## AKT ...
+            const seiteMatch = line.match(/^##\s+Seite\s+(\d+)/);
+            if (seiteMatch) {
+                if (currentPanel && currentSeite) currentSeite.panels.push(currentPanel);
+                currentPanel = null;
+                currentSeite = { nummer: parseInt(seiteMatch[1]), panels: [] };
+                seiten.push(currentSeite);
+                i++; continue;
+            }
+
+            // Neues Panel: ## S{N}_P{N} [FORMAT]
+            const panelMatch = line.match(/^##\s+S(\d+)_P(\d+)\s*\[([^\]]+)\]/);
+            if (panelMatch) {
+                if (currentPanel && currentSeite) currentSeite.panels.push(currentPanel);
+                const fmt = panelMatch[3].trim();
+                const sNr = parseInt(panelMatch[1]);
+                const pNr = parseInt(panelMatch[2]);
+
+                // Sicherstellen dass Seite existiert
+                if (!currentSeite || currentSeite.nummer !== sNr) {
+                    currentSeite = seiten.find(s => s.nummer === sNr);
+                    if (!currentSeite) {
+                        currentSeite = { nummer: sNr, panels: [] };
+                        seiten.push(currentSeite);
+                    }
+                }
+
+                const bildName = `${id}_${sNr}_P${pNr}.jpg`;
+                currentPanel = {
+                    bild: bildName,
+                    format: fmt,
+                    wide: fmt === '16:9',
+                    tall: fmt === '9:16',
+                    locDna: '',
+                    story: '',
+                    skript: '',
+                    caption: ''
+                };
+                i++; continue;
+            }
+
+            // Panel-Felder L / S / K
+            if (currentPanel) {
+                if (line.startsWith('L:')) {
+                    currentPanel.locDna = line.replace(/^L:\s*/, '');
+                } else if (line.startsWith('S:')) {
+                    currentPanel.story = line.replace(/^S:\s*/, '');
+                } else if (line.startsWith('K:')) {
+                    currentPanel.skript = line.replace(/^K:\s*/, '');
+                }
+            }
+            i++;
+        }
+
+        // Letztes offenes Panel schließen
+        if (currentPanel && currentSeite) currentSeite.panels.push(currentPanel);
+
+        // Seiten sortieren
+        seiten.sort((a, b) => a.nummer - b.nummer);
+
+        return {
+            id,
+            heft: {
+                titel,
+                teaser,
+                released: false,
+                cover: 'cover.jpg',
+                seiten,
+                coverStory: teaser
+            }
+        };
+    }
+
+    function exportMembers() {
+        let txt = "# SnailsStons Members\n# Format: token:von:bis:level\n\n";
+        members.forEach(m => txt += `${m.token}:${m.von}:${m.bis}:${m.level || 'bronze'}\n`);
+        downloadFile(txt, 'members.md', 'text/markdown');
+        document.getElementById('export-reminder').style.display = 'block';
+        showStatus("members.md heruntergeladen – jetzt auf Server hochladen!");
+    }
+
+    // --- SHARED ---
+    function saveLocal() {
+        localStorage.setItem('snail_v50_data', JSON.stringify(hefte));
+        showStatus("Stand gesichert!");
+    }
+
+    function saveMembers() {
+        localStorage.setItem('snail_members', JSON.stringify(members));
+    }
+
+    function showStatus(txt) {
+        const s = document.getElementById('status-msg');
+        s.innerText = txt; s.classList.add('show');
+        setTimeout(() => s.classList.remove('show'), 2000);
+    }
+
+    function updateMeta() {
+        const h = hefte[currentHeftId];
+        h.titel = document.getElementById('h-titel').value;
+        h.teaser = document.getElementById('h-teaser').value;
+        h.coverStory = h.teaser;
+        saveLocal();
+    }
+
+    function exportHeft(id) {
+        const h = hefte[id];
+        const data = `hefte["${id}"] = ${JSON.stringify(h, null, 2)};\n`;
+        downloadFile(data, `heft${id}.js`, 'application/javascript');
+    }
+
+    function clearLocal() {
+        if(confirm("Lokal löschen und data/ neu einlesen?")) {
+            localStorage.removeItem('snail_v50_data');
+            location.reload();
+        }
+    }
+
+    function downloadFile(content, name, type) {
+        const blob = new Blob([content], {type: type});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob); a.download = name; a.click();
+    }
+
+    // --- GITHUB INTEGRATION ---
+    function saveGHConfig() {
+        const repo = document.getElementById('gh-repo').value.trim();
+        const branch = document.getElementById('gh-branch').value.trim();
+        const token = document.getElementById('gh-token').value.trim();
+        if (!repo || !branch || !token) { showStatus("Alle GitHub-Felder ausfüllen!"); return; }
+        localStorage.setItem('gh_repo', repo);
+        localStorage.setItem('gh_branch', branch);
+        localStorage.setItem('gh_token', token);
+        showGHStatus('✅ Gespeichert. Verbindung testen!', 'var(--success)');
+        showStatus("GitHub Config gespeichert!");
+    }
+
+    function loadGHConfig() {
+        const repo = localStorage.getItem('gh_repo') || '';
+        const branch = localStorage.getItem('gh_branch') || 'main';
+        const token = localStorage.getItem('gh_token') || '';
+        document.getElementById('gh-repo').value = repo;
+        document.getElementById('gh-branch').value = branch;
+        document.getElementById('gh-token').value = token;
+    }
+
+    function getGHConfig() {
+        return {
+            repo: localStorage.getItem('gh_repo'),
+            branch: localStorage.getItem('gh_branch') || 'main',
+            token: localStorage.getItem('gh_token')
+        };
+    }
+
+    async function testGHConnection() {
+        const { repo, token } = getGHConfig();
+        if (!repo || !token) { showGHStatus('⚠️ Zuerst Repo und Token speichern.', '#f0a500'); return; }
+        showGHStatus('🔌 Verbinde...', '#888');
+        try {
+            const res = await fetch(`https://api.github.com/repos/${repo}`, {
+                headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+            });
+            if (res.ok) {
+                const data = await res.json();
+                showGHStatus(`✅ Verbunden: <strong>${data.full_name}</strong> (${data.private ? 'privat' : 'öffentlich'})`, 'var(--success)');
+            } else {
+                showGHStatus(`❌ Fehler ${res.status}: Token ungültig oder Repo nicht gefunden.`, 'var(--danger)');
+            }
+        } catch (e) { showGHStatus('❌ Netzwerkfehler: ' + e.message, 'var(--danger)'); }
+    }
+
+    async function ghGetFileSHA(path) {
+        const { repo, branch, token } = getGHConfig();
+        try {
+            const res = await fetch(`https://api.github.com/repos/${repo}/contents/${path}?ref=${branch}`, {
+                headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+            });
+            if (res.ok) { const d = await res.json(); return d.sha; }
+        } catch(e) {}
+        return null;
+    }
+
+    async function ghPushFile(path, content, commitMsg) {
+        const { repo, branch, token } = getGHConfig();
+        if (!repo || !token) { showPushStatus('⚠️ GitHub nicht konfiguriert!', 'var(--danger)'); return false; }
+        const sha = await ghGetFileSHA(path);
+        const body = {
+            message: commitMsg,
+            content: btoa(unescape(encodeURIComponent(content))),
+            branch
+        };
+        if (sha) body.sha = sha;
+        try {
+            const res = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
+                method: 'PUT',
+                headers: {
+                    Authorization: `token ${token}`,
+                    Accept: 'application/vnd.github.v3+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            });
+            if (res.ok) return true;
+            const err = await res.json();
+            showPushStatus(`❌ GitHub Fehler: ${err.message}`, 'var(--danger)');
+            return false;
+        } catch(e) { showPushStatus('❌ Netzwerkfehler: ' + e.message, 'var(--danger)'); return false; }
+    }
+
+    async function pushHeft(id) {
+        const h = hefte[id];
+        if (!h) return;
+        showPushStatus(`⏳ Pushe heft${id}.js nach GitHub...`, '#888');
+        const content = `hefte["${id}"] = ${JSON.stringify(h, null, 2)};\n`;
+        const ok = await ghPushFile(`data/heft${id}.js`, content, `Admin: Update heft${id}.js`);
+        if (ok) {
+            showPushStatus(`✅ heft${id}.js → GitHub/data/ ✓ Cloudflare baut jetzt neu (~60s).`, 'var(--success)');
+            showStatus(`Heft ${id} auf GitHub!`);
+        }
+    }
+
+    async function pushMembers() {
+        showPushStatus('⏳ Pushe members.md nach GitHub...', '#888');
+        let txt = "# SnailsStons Members\n# Format: token:von:bis:level\n\n";
+        members.forEach(m => txt += `${m.token}:${m.von}:${m.bis}:${m.level || 'bronze'}\n`);
+        const ok = await ghPushFile('members.md', txt, 'Admin: Update members.md');
+        if (ok) {
+            showPushStatus('✅ members.md → GitHub ✓ Sofort aktiv.', 'var(--success)');
+            showStatus("members.md auf GitHub!");
+            document.getElementById('export-reminder').style.display = 'none';
+        }
+    }
+
+    function showGHStatus(msg, color) {
+        const el = document.getElementById('gh-status');
+        el.style.display = 'block';
+        el.style.background = '#0a0a0a';
+        el.style.border = `1px solid ${color}`;
+        el.style.color = color;
+        el.innerHTML = msg;
+    }
+
+    function showPushStatus(msg, color) {
+        const el = document.getElementById('push-status');
+        el.style.display = 'block';
+        el.style.background = '#0a0a0a';
+        el.style.border = `1px solid ${color}`;
+        el.style.color = color;
+        el.innerHTML = msg;
+    }
+
+    window.onload = init;
+</script>
+</body>
+</html>
