@@ -8,7 +8,7 @@
   },
 
   // Add this to your wrangler.jsonc
-  "SNAILS_STORAGE": [
+  "kv_namespaces": [
     {
       "binding": "KV",
       "id": "14326d1fbb2346b9aebaa6c2602588fa",
