@@ -15,7 +15,10 @@ hefte["23"] = {
           "locDna": "Café Bar Bus, Gandia – Avinguda del Marqués de Campo. Früher Morgen, die ersten Sonnenstrahlen fallen durch die großen Fenster auf die spanischen Fliesen `[ASSET: CAFE_BUS_V1]`. Kaffeemaschine zischt, Tassen klappern. Durch die Scheiben Blick auf die Bushaltestelle `[ASSET: CAFE_BUS_HALT_V1]`.",
           "story": "Die vier Schnecken sitzen am Tisch. Felix studiert sein `[ASSET: FELIX_HANDY_V1]`, Archie nippt an `[ASSET: ARCHIE_MARTINI_V1]`, Stella ordnet ihr `[ASSET: STELLA_MESH_HARNESS_V1]`, Luna mit geschlossenen Augen.",
           "skript": "**DIALOG** Felix: „Ich hab was gefunden! Eine Höhle! Die größte in der ganzen Region!“",
-          "caption": ""
+          "caption": "",
+          "members": true,
+          "bonus": true,
+          "level": "gold"
         },
         {
           "bild": "23_1_P2.jpg",
@@ -25,7 +28,10 @@ hefte["23"] = {
           "locDna": "Archie stellt sein Glas ab, blickt skeptisch.",
           "story": "Er will Details wissen.",
           "skript": "**DIALOG** Archie: „Welche Höhle?“",
-          "caption": ""
+          "caption": "",
+          "members": true,
+          "bonus": true,
+          "level": "gold"
         },
         {
           "bild": "23_1_P3.jpg",
@@ -35,7 +41,10 @@ hefte["23"] = {
           "locDna": "Felix zeigt auf sein Handy, die Aufregung steigt.",
           "story": "Er hat die Daten parat.",
           "skript": "**DIALOG** Felix: „Cova de l’Autopista! Fast siebeneinhalb Kilometer Gänge! Das ist ein Labyrinth unter der Erde!“",
-          "caption": ""
+          "caption": "",
+          "members": true,
+          "bonus": true,
+          "level": "gold"
         },
         {
           "bild": "23_1_P4.jpg",
@@ -45,7 +54,10 @@ hefte["23"] = {
           "locDna": "Archie runzelt die Stirn (so gut das geht), seine Antennen senken sich.",
           "story": "Seine Stimme wird leiser, fast warnend.",
           "skript": "**DIALOG** Archie: „Die Cova de l’Autopista. 1984 entdeckt. Für Schnecken… gefährlich.“ – *Kamera hält auf Archies besorgtes Gesicht.*",
-          "caption": ""
+          "caption": "",
+          "members": true,
+          "bonus": true,
+          "level": "gold"
         }
       ],
       "members": true,
