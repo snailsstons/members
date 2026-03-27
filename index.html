@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>SnailsAdmin | v10.0 (Member & Guardian)</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <script src="hefte.js"></script>
+    <script>
+        // Sicheres hefte-Objekt – auch wenn hefte.js fehlt oder leer ist
+        if (typeof hefte === 'undefined') { var hefte = {}; }
+    </script>
+    <script src="hefte.js" onerror="console.warn('hefte.js nicht gefunden – leeres Objekt wird verwendet.')"></script>
+    <script>
+        if (typeof hefte === 'undefined') { var hefte = {}; }
+    </script>
     <style>
         :root { --gold: #d4af37; --bg: #000; --card: #111; --success: #28a745; --danger: #ff4444; }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
@@ -148,6 +155,15 @@
     let currentHeftId = "0";
     let members = [];
 
+    // Muss vor init() stehen – blindSync braucht getGHConfig
+    function getGHConfig() {
+        return {
+            repo: localStorage.getItem('gh_repo'),
+            branch: localStorage.getItem('gh_branch') || 'main',
+            token: localStorage.getItem('gh_token')
+        };
+    }
+
     async function init() {
         const local = localStorage.getItem('snail_v50_data');
         const localMembers = localStorage.getItem('snail_members');
@@ -163,11 +179,40 @@
     }
 
     async function blindSync() {
+        const { repo, branch, token } = getGHConfig();
+
+        // GitHub-Sync: data/ Ordner auslesen und alle heftN.js laden
+        if (repo && token) {
+            showStatus("Lade Hefte von GitHub...");
+            try {
+                const res = await fetch(`https://api.github.com/repos/${repo}/contents/data?ref=${branch}`, {
+                    headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+                });
+                if (res.ok) {
+                    const files = await res.json();
+                    const heftFiles = files.filter(f => f.name.match(/^heft\d+\.js$/));
+                    for (const f of heftFiles) {
+                        try {
+                            const fileRes = await fetch(f.download_url);
+                            const code = await fileRes.text();
+                            // hefte["N"] = {...} eval-safe ausführen
+                            const fn = new Function('hefte', code);
+                            fn(hefte);
+                        } catch(e) { console.warn('Fehler beim Laden:', f.name, e); }
+                    }
+                    saveLocal();
+                    showStatus(`${heftFiles.length} Hefte von GitHub geladen!`);
+                    return;
+                }
+            } catch(e) { console.warn('GitHub-Sync fehlgeschlagen, versuche lokal:', e); }
+        }
+
+        // Fallback: lokal via script-tags (localhost / gleiche Domain)
         let i = 0, errors = 0;
         while (errors <= 1) {
             try { await loadScript(`data/heft${i}.js?v=${Date.now()}`); i++; errors = 0; }
             catch (err) { i++; errors++; }
-            if(i > 150) break;
+            if (i > 150) break;
         }
         saveLocal();
     }
@@ -386,7 +431,7 @@
                 i++; continue;
             }
 
-            // Neues Panel: ## S{N}_P{N} [FORMAT]
+            // Neues Panel: ## S{N}_P{N} [FORMAT] (optionaler Text danach erlaubt)
             const panelMatch = line.match(/^##\s+S(\d+)_P(\d+)\s*\[([^\]]+)\]/);
             if (panelMatch) {
                 if (currentPanel && currentSeite) currentSeite.panels.push(currentPanel);
@@ -520,14 +565,6 @@
         document.getElementById('gh-repo').value = repo;
         document.getElementById('gh-branch').value = branch;
         document.getElementById('gh-token').value = token;
-    }
-
-    function getGHConfig() {
-        return {
-            repo: localStorage.getItem('gh_repo'),
-            branch: localStorage.getItem('gh_branch') || 'main',
-            token: localStorage.getItem('gh_token')
-        };
     }
 
     async function testGHConnection() {
