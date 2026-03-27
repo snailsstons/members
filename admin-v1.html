@@ -51,7 +51,7 @@
     <h1>SnailsAdmin</h1>
     <div style="display:flex; gap:10px; margin-top:15px; max-width:800px; margin-left:auto; margin-right:auto;">
         <select id="heft-select" onchange="loadHeft(this.value)"></select>
-        <button class="btn btn-sec" style="width:auto; padding: 0 20px;" onclick="addNewHeft()">+</button>
+        <button class="btn btn-sec" style="width:auto; padding: 0 20px;">+</button>
     </div>
 </div>
 
@@ -61,17 +61,25 @@
         <h2>Mitglieder-Liste (members.md) <button class="btn-lock" style="font-size:0.5rem;" onclick="document.getElementById('member-file').click()">IMPORT .MD</button></h2>
         <input type="file" id="member-file" class="hidden" accept=".md" onchange="importMembers(this)">
         <div id="member-manager">
-            <div class="grid" style="grid-template-columns: 1fr 1fr 1fr 50px; margin-bottom:10px;">
+            <div class="grid" style="grid-template-columns: 1fr 1fr 1fr 1fr 50px; margin-bottom:10px;">
                 <input type="text" id="m-token" placeholder="Token">
                 <input type="date" id="m-von">
                 <input type="date" id="m-bis">
+                <select id="m-level">
+                    <option value="bronze">Bronze</option>
+                    <option value="silver">Silver</option>
+                    <option value="gold">Gold</option>
+                </select>
                 <button class="btn" onclick="addMember()">+</button>
             </div>
             <table id="member-table">
-                <thead><tr><th>Token</th><th>Von</th><th>Bis</th><th></th></tr></thead>
+                <thead><tr><th>Token</th><th>Von</th><th>Bis</th><th>Level</th><th></th></tr></thead>
                 <tbody></tbody>
             </table>
-            <button class="btn btn-sec" style="margin-top:15px;" onclick="exportMembers()">💾 MEMBERS.MD EXPORTIEREN</button>
+            <button class="btn" style="margin-top:15px; background: var(--success);" onclick="exportMembers()">💾 MEMBERS.MD EXPORTIEREN & HOCHLADEN</button>
+            <div id="export-reminder" style="display:none; margin-top:10px; padding:10px; background:#1a1a00; border:1px solid var(--gold); border-radius:8px; font-size:0.75rem; color:var(--gold);">
+                ⚠️ Datei heruntergeladen! Jetzt <strong>members.md auf den Server hochladen</strong> – sonst kann der neue Member sich nicht einloggen.
+            </div>
         </div>
     </div>
 
@@ -90,8 +98,9 @@
     <div class="card">
         <h2>Story Import</h2>
         <div style="background: #080808; border: 2px dashed #333; padding: 20px; border-radius: 8px; text-align: center;">
-            <input type="file" id="md-file" class="hidden" accept=".md" onchange="importStory(this)">
+            <input type="file" id="md-file" class="hidden" accept=".md" onchange="importStoryMD(this)">
             <button class="btn btn-sec" onclick="document.getElementById('md-file').click()">STORY DATEI WÄHLEN</button>
+            <div id="import-status" style="display:none; margin-top:10px; padding:10px; background:#0a1a00; border:1px solid var(--success); border-radius:8px; font-size:0.75rem; color:var(--success);"></div>
         </div>
     </div>
 
@@ -102,7 +111,7 @@
 
     <div class="card">
         <h2>Export</h2>
-        <button class="btn" onclick="exportHeft(currentHeftId)">💾 HEFT ${currentHeftId} EXPORTIEREN</button>
+        <button class="btn" onclick="exportHeft(currentHeftId)">💾 HEFT EXPORTIEREN</button>
         <button class="btn btn-sec" style="margin-top:10px; background:var(--danger);" onclick="clearLocal()">RESET & BLIND SYNC</button>
     </div>
 </div>
@@ -197,14 +206,14 @@
                             <strong>S:</strong> ${p.story || '...'}<br>
                             <strong>K:</strong> ${p.skript || '...'}
                         </div>
-                        <button class="btn btn-sec" style="padding:5px;" onclick="openInEngine(${seite.nummer || sIdx + 1}, ${pIdx + 1})">🎨</button>
+                        <button class="btn btn-sec" style="padding:5px;">🎨</button>
                     </div>`;
             });
         });
         container.innerHTML = html;
     }
 
-    // --- LOCK LOGIC ---
+    // --- LOCK LOGIK ---
     function toggleHeftLock() {
         const h = hefte[currentHeftId];
         h.members = !h.members;
@@ -224,23 +233,29 @@
     }
 
     // --- MEMBER MANAGEMENT ---
+    // FIX: Level-Wert wird nun mitgespeichert
     function addMember() {
-        const t = document.getElementById('m-token').value;
+        const t = document.getElementById('m-token').value.trim();
         const v = document.getElementById('m-von').value;
         const b = document.getElementById('m-bis').value;
-        if(!t || !v || !b) return;
-        members.push({ token: t, von: v, bis: b });
+        const l = document.getElementById('m-level').value;
+        if(!t || !v || !b) { showStatus("Token, Von und Bis ausfüllen!"); return; }
+        members.push({ token: t, von: v, bis: b, level: l });
         document.getElementById('m-token').value = '';
         renderMembers();
         saveMembers();
+        // Reminder anzeigen
+        document.getElementById('export-reminder').style.display = 'block';
+        showStatus("Member hinzugefügt – Exportieren nicht vergessen!");
     }
 
+    // FIX: Level-Anzeige in der Tabelle ergänzt
     function renderMembers() {
         const tbody = document.querySelector('#member-table tbody');
         tbody.innerHTML = '';
         members.forEach((m, i) => {
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td>${m.token}</td><td>${m.von}</td><td>${m.bis}</td><td><button class="btn-lock active" onclick="delMember(${i})">X</button></td>`;
+            tr.innerHTML = `<td>${m.token}</td><td>${m.von}</td><td>${m.bis}</td><td style="text-transform:uppercase; font-size:0.6rem; color:var(--gold)">${m.level || 'bronze'}</td><td><button class="btn-lock active" onclick="delMember(${i})">X</button></td>`;
             tbody.appendChild(tr);
         });
     }
@@ -253,14 +268,23 @@
 
     function importMembers(input) {
         const file = input.files[0];
+        if(!file) return;
         const reader = new FileReader();
         reader.onload = (e) => {
             const lines = e.target.result.split('\n');
             members = [];
             lines.forEach(line => {
+                line = line.trim();
                 if(line.includes(':') && !line.startsWith('#')) {
                     const parts = line.split(':');
-                    if(parts.length === 3) members.push({ token: parts[0].trim(), von: parts[1].trim(), bis: parts[2].trim() });
+                    if(parts.length >= 3) {
+                        members.push({ 
+                            token: parts[0].trim(), 
+                            von: parts[1].trim(), 
+                            bis: parts[2].trim(),
+                            level: parts[3] ? parts[3].trim().toLowerCase() : 'bronze'
+                        });
+                    }
                 }
             });
             renderMembers();
@@ -269,10 +293,139 @@
         reader.readAsText(file);
     }
 
+    // --- MD STORY IMPORT ---
+    function importStoryMD(input) {
+        const file = input.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const text = e.target.result;
+            const result = parseMD(text);
+            if (!result) { showStatus("Fehler beim Parsen der MD-Datei!"); return; }
+
+            const id = result.id;
+            hefte[id] = result.heft;
+            saveLocal();
+            renderHeftSelector();
+
+            // Zu neuem Heft springen
+            document.getElementById('heft-select').value = id;
+            loadHeft(id);
+
+            const statusEl = document.getElementById('import-status');
+            statusEl.style.display = 'block';
+            statusEl.innerHTML = `✅ Heft ${id} importiert: <strong>${result.heft.titel}</strong> – ${result.heft.seiten.length} Seiten, ${result.heft.seiten.reduce((s,p)=>s+p.panels.length,0)} Panels.<br>➡️ Jetzt <strong>💾 HEFT EXPORTIEREN</strong> klicken → als heft${id}.js in /data/ hochladen.`;
+            showStatus(`Heft ${id} geladen – Export nicht vergessen!`);
+        };
+        reader.readAsText(file);
+        input.value = ''; // Reset für erneuten Import
+    }
+
+    function parseMD(text) {
+        const lines = text.split('\n').map(l => l.trimEnd());
+
+        // Heft-Titel und ID aus erster Zeile: ## Heft 23 – Titel [...]
+        const headerMatch = lines[0].match(/##\s+Heft\s+(\d+)\s*[–-]\s*(.+?)(?:\s*\[.*\])?\s*$/);
+        if (!headerMatch) return null;
+        const id = headerMatch[1];
+        const titel = headerMatch[2].trim();
+
+        // Teaser
+        let teaser = '';
+        for (let i = 1; i < Math.min(10, lines.length); i++) {
+            if (lines[i].startsWith('TEASER:')) {
+                teaser = lines[i].replace(/^TEASER:\s*/, '').replace(/#\S+/g, '').trim();
+                break;
+            }
+        }
+
+        const seiten = [];
+        let currentSeite = null;
+        let currentPanel = null;
+        let i = 0;
+
+        while (i < lines.length) {
+            const line = lines[i];
+
+            // Neue Seite: ## Seite N – Titel  ODER  ## AKT ...
+            const seiteMatch = line.match(/^##\s+Seite\s+(\d+)/);
+            if (seiteMatch) {
+                if (currentPanel && currentSeite) currentSeite.panels.push(currentPanel);
+                currentPanel = null;
+                currentSeite = { nummer: parseInt(seiteMatch[1]), panels: [] };
+                seiten.push(currentSeite);
+                i++; continue;
+            }
+
+            // Neues Panel: ## S{N}_P{N} [FORMAT]
+            const panelMatch = line.match(/^##\s+S(\d+)_P(\d+)\s*\[([^\]]+)\]/);
+            if (panelMatch) {
+                if (currentPanel && currentSeite) currentSeite.panels.push(currentPanel);
+                const fmt = panelMatch[3].trim();
+                const sNr = parseInt(panelMatch[1]);
+                const pNr = parseInt(panelMatch[2]);
+
+                // Sicherstellen dass Seite existiert
+                if (!currentSeite || currentSeite.nummer !== sNr) {
+                    currentSeite = seiten.find(s => s.nummer === sNr);
+                    if (!currentSeite) {
+                        currentSeite = { nummer: sNr, panels: [] };
+                        seiten.push(currentSeite);
+                    }
+                }
+
+                const bildName = `${id}_${sNr}_P${pNr}.jpg`;
+                currentPanel = {
+                    bild: bildName,
+                    format: fmt,
+                    wide: fmt === '16:9',
+                    tall: fmt === '9:16',
+                    locDna: '',
+                    story: '',
+                    skript: '',
+                    caption: ''
+                };
+                i++; continue;
+            }
+
+            // Panel-Felder L / S / K
+            if (currentPanel) {
+                if (line.startsWith('L:')) {
+                    currentPanel.locDna = line.replace(/^L:\s*/, '');
+                } else if (line.startsWith('S:')) {
+                    currentPanel.story = line.replace(/^S:\s*/, '');
+                } else if (line.startsWith('K:')) {
+                    currentPanel.skript = line.replace(/^K:\s*/, '');
+                }
+            }
+            i++;
+        }
+
+        // Letztes offenes Panel schließen
+        if (currentPanel && currentSeite) currentSeite.panels.push(currentPanel);
+
+        // Seiten sortieren
+        seiten.sort((a, b) => a.nummer - b.nummer);
+
+        return {
+            id,
+            heft: {
+                titel,
+                teaser,
+                released: false,
+                cover: 'cover.jpg',
+                seiten,
+                coverStory: teaser
+            }
+        };
+    }
+
     function exportMembers() {
-        let txt = "# SnailsStons Members\n# token:von:bis\n\n";
-        members.forEach(m => txt += `${m.token}:${m.von}:${m.bis}\n`);
+        let txt = "# SnailsStons Members\n# Format: token:von:bis:level\n\n";
+        members.forEach(m => txt += `${m.token}:${m.von}:${m.bis}:${m.level || 'bronze'}\n`);
         downloadFile(txt, 'members.md', 'text/markdown');
+        document.getElementById('export-reminder').style.display = 'block';
+        showStatus("members.md heruntergeladen – jetzt auf Server hochladen!");
     }
 
     // --- SHARED ---
@@ -303,6 +456,13 @@
         const h = hefte[id];
         const data = `hefte["${id}"] = ${JSON.stringify(h, null, 2)};\n`;
         downloadFile(data, `heft${id}.js`, 'application/javascript');
+    }
+
+    function clearLocal() {
+        if(confirm("Lokal löschen und data/ neu einlesen?")) {
+            localStorage.removeItem('snail_v50_data');
+            location.reload();
+        }
     }
 
     function downloadFile(content, name, type) {
