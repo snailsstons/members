@@ -91,7 +91,14 @@
     </div>
 
     <div class="card">
-        <h2>Heft Meta-Daten <button id="heft-lock-btn" class="btn-lock" onclick="toggleHeftLock()">🔒 LOCK HEFT</button></h2>
+        <h2>Heft Meta-Daten
+            <select id="heft-lock-btn" onchange="setHeftLevel(this.value)" style="width:auto;padding:3px 8px;font-size:0.65rem;background:#111;color:#fff;border:1px solid #444;border-radius:4px;">
+                <option value="free">🔓 Free</option>
+                <option value="bronze">🥉 Bronze</option>
+                <option value="silver">🥈 Silver</option>
+                <option value="gold">🥇 Gold</option>
+            </select>
+        </h2>
         <div class="grid" style="grid-template-columns: 80px 1fr;">
             <div><label>ID</label><input type="text" id="h-id" readonly></div>
             <div><label>Titel</label><input type="text" id="h-titel" oninput="updateMeta()"></div>
@@ -245,9 +252,8 @@
         document.getElementById('h-titel').value = h.titel || '';
         document.getElementById('h-teaser').value = h.teaser || '';
         
-        const btn = document.getElementById('heft-lock-btn');
-        btn.classList.toggle('active', !!h.members);
-        btn.innerText = h.members ? "🔒 LOCKED" : "🔓 FREE";
+        const heftLvl = h.members ? (h.level || 'bronze') : 'free';
+        document.getElementById('heft-lock-btn').value = heftLvl;
         
         renderPreview(id);
     }
@@ -257,24 +263,29 @@
         const container = document.getElementById('preview-list');
         if(!h || !h.seiten) { container.innerHTML = ''; return; }
 
+        const levelSelect = (cur, onChange) => {
+            const opts = ['free','bronze','silver','gold'].map(l => {
+                const icon = l==='free'?'🔓':l==='bronze'?'🥉':l==='silver'?'🥈':'🥇';
+                return `<option value="${l}" ${cur===l?'selected':''}>${icon} ${l.charAt(0).toUpperCase()+l.slice(1)}</option>`;
+            }).join('');
+            return `<select style="width:auto;padding:3px 6px;font-size:0.6rem;background:#111;color:#fff;border:1px solid #444;border-radius:4px;" onchange="${onChange}">${opts}</select>`;
+        };
+
         let html = "";
         h.seiten.forEach((seite, sIdx) => {
+            const seiteCur = seite.members ? (seite.level || 'bronze') : 'free';
             html += `
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
                     <div style="color:var(--gold); font-size:0.7rem; font-weight:900;">SEITE ${seite.nummer || sIdx + 1}</div>
-                    <button class="btn-lock ${seite.members ? 'active' : ''}" onclick="togglePageLock(${sIdx})">
-                        ${seite.members ? '🔒 MEMBERS' : '🔓 FREE'}
-                    </button>
+                    ${levelSelect(seiteCur, `setSeiteLevel(${sIdx}, this.value)`)}
                 </div>`;
-            
             seite.panels.forEach((p, pIdx) => {
+                const panelCur = p.level ? p.level : (p.members || p.bonus ? 'bronze' : 'free');
                 html += `
                     <div class="panel-row">
                         <div class="panel-meta">
                             P${pIdx + 1}
-                            <button class="btn-lock ${p.members ? 'active' : ''}" style="font-size:0.5rem;" onclick="togglePanelLock(${sIdx}, ${pIdx})">
-                                ${p.members ? '🔒' : '🔓'}
-                            </button>
+                            ${levelSelect(panelCur, `setPanelLevel(${sIdx}, ${pIdx}, this.value)`)}
                         </div>
                         <div style="font-size:0.65rem; color:#888;">
                             <strong>S:</strong> ${p.story || '...'}<br>
@@ -287,23 +298,25 @@
         container.innerHTML = html;
     }
 
-    // --- LOCK LOGIK ---
-    function toggleHeftLock() {
+    function setHeftLevel(val) {
         const h = hefte[currentHeftId];
-        h.members = !h.members;
-        saveLocal(); loadHeft(currentHeftId);
+        if (val === 'free') { h.members = false; delete h.level; }
+        else { h.members = true; h.level = val; }
+        saveLocal();
     }
 
-    function togglePageLock(sIdx) {
+    function setSeiteLevel(sIdx, val) {
         const s = hefte[currentHeftId].seiten[sIdx];
-        s.members = !s.members;
-        saveLocal(); renderPreview(currentHeftId);
+        if (val === 'free') { s.members = false; delete s.level; }
+        else { s.members = true; s.level = val; }
+        saveLocal();
     }
 
-    function togglePanelLock(sIdx, pIdx) {
+    function setPanelLevel(sIdx, pIdx, val) {
         const p = hefte[currentHeftId].seiten[sIdx].panels[pIdx];
-        p.members = !p.members;
-        saveLocal(); renderPreview(currentHeftId);
+        if (val === 'free') { p.members = false; p.bonus = false; delete p.level; }
+        else { p.members = true; p.bonus = true; p.level = val; }
+        saveLocal();
     }
 
     // --- MEMBER MANAGEMENT ---
