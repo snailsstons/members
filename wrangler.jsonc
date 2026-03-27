@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "snailsstons_kv",
+  "name": "members",
   "main": "src/index.ts",
   "compatibility_date": "2025-02-04",
   "observability": {
