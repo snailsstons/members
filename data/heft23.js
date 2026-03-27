@@ -48,7 +48,8 @@ hefte["23"] = {
           "caption": ""
         }
       ],
-      "members": false
+      "members": true,
+      "level": "gold"
     },
     {
       "nummer": 2,
@@ -94,7 +95,8 @@ hefte["23"] = {
           "caption": ""
         }
       ],
-      "members": true
+      "members": true,
+      "level": "gold"
     },
     {
       "nummer": 3,
@@ -139,7 +141,9 @@ hefte["23"] = {
           "skript": "**DIALOG** Archie: „Ein kleines Santuario. Von dort aus sind es nur noch wenige Meter zur Cova de l’Autopista.“ – *Kamera hält auf die Karte.*",
           "caption": ""
         }
-      ]
+      ],
+      "members": true,
+      "level": "gold"
     },
     {
       "nummer": 4,
