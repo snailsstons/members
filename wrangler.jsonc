@@ -1,20 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "members",
-  "main": "index.ts",
-  "compatibility_date": "2025-02-04",
+  "main": "index.ts", 
+  "compatibility_date": "2025-09-27",
   "observability": {
     "enabled": true
   },
-
-  // Add this to your wrangler.jsonc
-  "kv_namespaces": [
-    {
-      "binding": "KV",
-      "id": "14326d1fbb2346b9aebaa6c2602588fa",
-      
-      // Optional: preview_id used when running `wrangler dev` for local dev
-      "preview_id": "<ID_OF_PREVIEW_KV_NAMESPACE_FOR_LOCAL_DEVELOPMENT>"
-    }
+  "compatibility_flags": [
+    "nodejs_compat"
   ]
 }
