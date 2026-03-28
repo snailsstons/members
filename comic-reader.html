@@ -565,36 +565,12 @@
         const container = document.getElementById('viewport');
         let currentData = null;
 
-        function ghConfig() {
-            return {
-                repo: localStorage.getItem('gh_repo'),
-                branch: localStorage.getItem('gh_branch') || 'main',
-                token: localStorage.getItem('gh_token')
-            };
-        }
-
         async function loadHeft() {
-            const { repo, branch, token } = ghConfig();
-            if (repo && token) {
-                try {
-                    const url = `https://raw.githubusercontent.com/${repo}/${branch}/data/heft${HEFT_ID}.js`;
-                    const res = await fetch(url, {
-                        headers: { Authorization: `token ${token}` }
-                    });
-                    if (res.ok) {
-                        const code = await res.text();
-                        new Function('hefte', code)(window.hefte);
-                        onHeftLoaded();
-                        return;
-                    }
-                } catch(e) {}
-            }
-            // Fallback: lokal
             const s = document.createElement('script');
             s.src = `data/heft${HEFT_ID}.js?v=` + Date.now();
             s.onload = onHeftLoaded;
             s.onerror = () => {
-                container.innerHTML = `<h2 style="color:red; text-align:center; margin-top:150px;">Fehler: Die Datei "data/heft${HEFT_ID}.js" fehlt!</h2>`;
+                container.innerHTML = `<h2 style="color:red; text-align:center; margin-top:150px;">Fehler: Heft ${HEFT_ID} nicht gefunden.</h2>`;
             };
             document.head.appendChild(s);
         }
