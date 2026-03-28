@@ -35,7 +35,7 @@ hefte["0"] = {
           "caption": ""
         }
       ],
-      "members": true
+      "members": false
     }
   ]
 };
