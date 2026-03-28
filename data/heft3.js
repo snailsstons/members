@@ -51,7 +51,8 @@ hefte["3"] = {
         }
       ],
       "nummer": 2,
-      "members": true
+      "members": true,
+      "level": "silver"
     },
     {
       "panels": [
@@ -75,7 +76,8 @@ hefte["3"] = {
         }
       ],
       "nummer": 3,
-      "members": true
+      "members": true,
+      "level": "silver"
     },
     {
       "nummer": 4,
@@ -127,7 +129,8 @@ hefte["3"] = {
           "skript": "Archie: \"Genug des Feilschens. Suchen wir einen Ort für einen kühlen Martini.\" Felix: \"Aber die Blume kommt mit!\""
         }
       ],
-      "members": true
+      "members": true,
+      "level": "silver"
     },
     {
       "panels": [
@@ -151,7 +154,8 @@ hefte["3"] = {
         }
       ],
       "nummer": 5,
-      "members": true
+      "members": true,
+      "level": "silver"
     },
     {
       "nummer": 6,
@@ -203,7 +207,8 @@ hefte["3"] = {
           "skript": "Archie: \"Die Bestie ist weg. Die Sonne auch bald.\" Felix: \"Puh. Wo schlafen wir heute?\" Luna: (gleitet stumm in Richtung einer dunklen Mauernische)"
         }
       ],
-      "members": true
+      "members": true,
+      "level": "silver"
     },
     {
       "panels": [
@@ -227,7 +232,8 @@ hefte["3"] = {
         }
       ],
       "nummer": 7,
-      "members": true
+      "members": true,
+      "level": "silver"
     }
   ],
   "members": true,
