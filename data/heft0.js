@@ -18,24 +18,34 @@ hefte["0"] = {
           "locDna": "",
           "story": "",
           "skript": "",
-          "caption": ""
+          "caption": "",
+          "members": true,
+          "bonus": true,
+          "level": "silver"
         },
         {
           "bild": "0_1_P2.jpg",
           "locDna": "",
           "story": "",
           "skript": "",
-          "caption": ""
+          "caption": "",
+          "members": true,
+          "bonus": true,
+          "level": "silver"
         },
         {
           "bild": "0_1_P3.jpg",
           "locDna": "",
           "story": "",
           "skript": "",
-          "caption": ""
+          "caption": "",
+          "members": true,
+          "bonus": true,
+          "level": "silver"
         }
       ],
-      "members": false
+      "members": true,
+      "level": "silver"
     }
   ],
   "members": true,
