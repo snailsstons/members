@@ -95,8 +95,7 @@ hefte["24"] = {
           "caption": ""
         }
       ],
-      "members": true,
-      "level": "silver"
+      "members": false
     },
     {
       "nummer": 3,
@@ -142,8 +141,7 @@ hefte["24"] = {
           "caption": ""
         }
       ],
-      "members": true,
-      "level": "silver"
+      "members": false
     },
     {
       "nummer": 4,
@@ -189,8 +187,7 @@ hefte["24"] = {
           "caption": ""
         }
       ],
-      "members": true,
-      "level": "silver"
+      "members": false
     },
     {
       "nummer": 5,
@@ -236,8 +233,7 @@ hefte["24"] = {
           "caption": ""
         }
       ],
-      "members": true,
-      "level": "silver"
+      "members": false
     },
     {
       "nummer": 6,
