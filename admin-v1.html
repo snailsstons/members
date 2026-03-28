@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>SnailsAdmin | v10.0 (Member & Guardian)</title>
+    <link rel="manifest" href="manifest_admin.json">
+    <meta name="theme-color" content="#d4af37">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SnailsAdmin">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <script>
         // Sicheres hefte-Objekt – auch wenn hefte.js fehlt oder leer ist
@@ -59,6 +65,7 @@
     <div style="display:flex; gap:10px; margin-top:15px; max-width:800px; margin-left:auto; margin-right:auto;">
         <select id="heft-select" onchange="loadHeft(this.value)"></select>
         <button class="btn btn-sec" style="width:auto; padding: 0 20px;">+</button>
+        <button id="pwa-install-btn" class="btn btn-sec" style="width:auto; padding:0 12px; display:none;" onclick="installPWA()">📲</button>
     </div>
 </div>
 
@@ -744,6 +751,22 @@
         });
 
         window.open(`prompt-engine.html?${params.toString()}`, '_blank');
+    }
+
+    // --- PWA INSTALL ---
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        document.getElementById('pwa-install-btn').style.display = 'flex';
+    });
+    function installPWA() {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => {
+            deferredPrompt = null;
+            document.getElementById('pwa-install-btn').style.display = 'none';
+        });
     }
 
     window.onload = init;
