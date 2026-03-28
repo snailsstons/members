@@ -2,7 +2,7 @@
   "name": "SnailsAdmin",
   "short_name": "SnailsAdmin",
   "description": "SnailsStons Studio – Admin",
-  "start_url": "/admin.html",
+  "start_url": "/admin-v1.html",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#000000",
