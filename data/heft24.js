@@ -95,7 +95,8 @@ hefte["24"] = {
           "caption": ""
         }
       ],
-      "members": false
+      "members": true,
+      "level": "gold"
     },
     {
       "nummer": 3,
@@ -141,7 +142,8 @@ hefte["24"] = {
           "caption": ""
         }
       ],
-      "members": false
+      "members": true,
+      "level": "gold"
     },
     {
       "nummer": 4,
@@ -187,7 +189,8 @@ hefte["24"] = {
           "caption": ""
         }
       ],
-      "members": false
+      "members": true,
+      "level": "gold"
     },
     {
       "nummer": 5,
@@ -233,7 +236,8 @@ hefte["24"] = {
           "caption": ""
         }
       ],
-      "members": false
+      "members": true,
+      "level": "gold"
     },
     {
       "nummer": 6,
@@ -280,7 +284,7 @@ hefte["24"] = {
         }
       ],
       "members": true,
-      "level": "silver"
+      "level": "gold"
     },
     {
       "nummer": 7,
@@ -327,7 +331,7 @@ hefte["24"] = {
         }
       ],
       "members": true,
-      "level": "silver"
+      "level": "gold"
     },
     {
       "nummer": 8,
@@ -374,7 +378,7 @@ hefte["24"] = {
         }
       ],
       "members": true,
-      "level": "silver"
+      "level": "gold"
     },
     {
       "nummer": 9,
@@ -421,7 +425,7 @@ hefte["24"] = {
         }
       ],
       "members": true,
-      "level": "silver"
+      "level": "gold"
     },
     {
       "nummer": 10,
@@ -468,7 +472,7 @@ hefte["24"] = {
         }
       ],
       "members": true,
-      "level": "silver"
+      "level": "gold"
     },
     {
       "nummer": 11,
@@ -515,7 +519,7 @@ hefte["24"] = {
         }
       ],
       "members": true,
-      "level": "silver"
+      "level": "gold"
     },
     {
       "nummer": 12,
@@ -562,7 +566,7 @@ hefte["24"] = {
         }
       ],
       "members": true,
-      "level": "silver"
+      "level": "gold"
     },
     {
       "nummer": 13,
@@ -609,7 +613,7 @@ hefte["24"] = {
         }
       ],
       "members": true,
-      "level": "silver"
+      "level": "gold"
     },
     {
       "nummer": 14,
@@ -656,7 +660,7 @@ hefte["24"] = {
         }
       ],
       "members": true,
-      "level": "silver"
+      "level": "gold"
     },
     {
       "nummer": 15,
@@ -703,7 +707,7 @@ hefte["24"] = {
         }
       ],
       "members": true,
-      "level": "silver"
+      "level": "gold"
     },
     {
       "nummer": 16,
@@ -750,7 +754,7 @@ hefte["24"] = {
         }
       ],
       "members": true,
-      "level": "silver"
+      "level": "gold"
     }
   ],
   "coverStory": "Im Hafen von Gandia versteckt sich eine Schatzkammer aus Holz und Leidenschaft – ein Museum voller handgebauter Schiffe. Felix will jedes Modell fotografieren, Archie doziert über die Geschichte des Hafens, Stella findet die Ästhetik der alten Schiffe zeitlos – und Luna spürt die Hingabe eines Mannes, der hier sein Lebenswerk schuf. Am Ende, fast unbemerkt, ein Blick in die Ferne."
