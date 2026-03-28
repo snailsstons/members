@@ -555,7 +555,6 @@
         let currentData = null;
 
         async function loadHeft() {
-            // Lokal laden – Cloudflare liefert aus
             const s = document.createElement('script');
             s.src = `data/heft${HEFT_ID}.js?v=` + Date.now();
             s.onload = onHeftLoaded;
