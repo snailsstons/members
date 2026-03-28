@@ -65,7 +65,12 @@
 <div class="container">
     
     <div class="card">
-        <h2>Mitglieder-Liste (members.md) <button class="btn-lock" style="font-size:0.5rem;" onclick="document.getElementById('member-file').click()">IMPORT .MD</button></h2>
+        <h2>Mitglieder-Liste (members.md) 
+            <div style="display:flex;gap:5px;">
+                <button class="btn-lock" style="font-size:0.5rem;" onclick="reloadMembers()">↺ NEU LADEN</button>
+                <button class="btn-lock" style="font-size:0.5rem;" onclick="document.getElementById('member-file').click()">IMPORT .MD</button>
+            </div>
+        </h2>
         <input type="file" id="member-file" class="hidden" accept=".md" onchange="importMembers(this)">
         <div id="member-manager">
             <div class="grid" style="grid-template-columns: 1fr 1fr 1fr 1fr 50px; margin-bottom:10px;">
@@ -171,6 +176,38 @@
         };
     }
 
+    async function reloadMembers() {
+        localStorage.removeItem('snail_members');
+        members = [];
+        await loadMembersFromServer();
+        renderMembers();
+    }
+
+    async function loadMembersFromServer() {
+        try {
+            const res = await fetch('members.md?v=' + Date.now());
+            if (!res.ok) return;
+            const text = await res.text();
+            members = [];
+            text.split('\n').forEach(line => {
+                line = line.trim();
+                if (line && !line.startsWith('#') && line.includes(':')) {
+                    const parts = line.split(':');
+                    if (parts.length >= 3) {
+                        members.push({
+                            token: parts[0].trim(),
+                            von:   parts[1].trim(),
+                            bis:   parts[2].trim(),
+                            level: parts[3] ? parts[3].trim().toLowerCase() : 'bronze'
+                        });
+                    }
+                }
+            });
+            saveMembers();
+            showStatus(`${members.length} Members geladen`);
+        } catch(e) {}
+    }
+
     async function init() {
         const local = localStorage.getItem('snail_v50_data');
         const localMembers = localStorage.getItem('snail_members');
@@ -178,7 +215,12 @@
         if(!local) await blindSync(); 
         else Object.assign(hefte, JSON.parse(local));
         
-        if(localMembers) members = JSON.parse(localMembers);
+        if(localMembers) {
+            members = JSON.parse(localMembers);
+        } else {
+            // Automatisch members.md laden wenn localStorage leer
+            await loadMembersFromServer();
+        }
         
         renderHeftSelector();
         renderMembers();
