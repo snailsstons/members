@@ -19,9 +19,8 @@ hefte["0"] = {
           "story": "",
           "skript": "",
           "caption": "",
-          "members": true,
-          "bonus": true,
-          "level": "silver"
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "0_1_P2.jpg",
@@ -44,10 +43,8 @@ hefte["0"] = {
           "level": "silver"
         }
       ],
-      "members": true,
-      "level": "silver"
+      "members": false
     }
   ],
-  "members": true,
-  "level": "silver"
+  "members": false
 };
