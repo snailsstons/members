@@ -119,5 +119,7 @@ hefte["16"] = {
       ],
       "members": true
     }
-  ]
+  ],
+  "members": true,
+  "level": "silver"
 };
