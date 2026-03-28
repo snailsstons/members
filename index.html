@@ -37,7 +37,6 @@
         window.activeFilter = null;
 
         async function initGallery() {
-            // Immer lokal laden – Cloudflare liefert die Dateien aus
             const ids = [0, ...Array.from({length: 30}, (_, i) => i + 1)];
             let loaded = 0;
             await new Promise(resolve => {
@@ -47,7 +46,7 @@
                     s.onload = s.onerror = () => { if (++loaded >= ids.length) resolve(); };
                     document.head.appendChild(s);
                 });
-                setTimeout(resolve, 2500);
+                setTimeout(resolve, 3000);
             });
             renderGallery();
         }
