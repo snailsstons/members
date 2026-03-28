@@ -43,7 +43,12 @@
         .btn-lock { background: transparent; border: 1px solid #444; color: #666; padding: 4px 8px; font-size: 0.6rem; border-radius: 4px; }
         .btn-lock.active { background: var(--danger); border-color: #fff; color: #fff; }
 
-        .panel-row { background: #080808; border: 1px solid #222; border-radius: 8px; padding: 12px; margin-bottom: 10px; display: grid; grid-template-columns: 120px 1fr 100px; gap: 15px; align-items: start; }
+        .panel-row { background: #080808; border: 1px solid #1a1a1a; border-radius: 6px; padding: 6px 10px; margin-bottom: 4px; display: grid; grid-template-columns: 180px 1fr 40px; gap: 8px; align-items: center; }
+        .seite-header { display:flex; justify-content:space-between; align-items:center; padding: 8px 10px; background:#0d0d0d; border:1px solid #222; border-radius:8px; margin-top:8px; cursor:pointer; user-select:none; }
+        .seite-header:hover { border-color:#333; }
+        .seite-panels { display:none; padding: 4px 0 4px 0; }
+        .seite-panels.open { display:block; }
+        .panel-story-short { font-size:0.6rem; color:#666; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%; }
         .panel-meta { color: var(--gold); font-weight: 900; font-size: 0.65rem; display: flex; align-items: center; gap: 10px; }
         
         #status-msg { position: fixed; bottom: 0; left: 0; right: 0; background: var(--success); color: #fff; padding: 10px; text-align: center; font-weight: 700; transform: translateY(100%); transition: 0.3s; z-index: 2000; }
@@ -318,34 +323,61 @@
                 return `<option value="${l}" ${cur===l?'selected':''}>${icon} ${l.charAt(0).toUpperCase()+l.slice(1)}</option>`;
             }).join('');
             const fn = onChange.replace('this.value', 'this.options[this.selectedIndex].value');
-            return `<select style="width:auto;padding:3px 6px;font-size:0.6rem;background:#111;color:#fff;border:1px solid #444;border-radius:4px;" onchange="${fn}">${opts}</select>`;
+            return `<select style="width:auto;padding:2px 4px;font-size:0.55rem;background:#111;color:#fff;border:1px solid #444;border-radius:4px;" onchange="${fn}">${opts}</select>`;
         };
 
         let html = "";
         h.seiten.forEach((seite, sIdx) => {
             const seiteCur = seite.members ? (seite.level || 'bronze') : 'free';
+            const sNr = seite.nummer || sIdx + 1;
+            const pCount = seite.panels ? seite.panels.length : 0;
+            const sIcon = seiteCur==='free'?'🔓':seiteCur==='bronze'?'🥉':seiteCur==='silver'?'🥈':'🥇';
+
             html += `
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
-                    <div style="color:var(--gold); font-size:0.7rem; font-weight:900;">SEITE ${seite.nummer || sIdx + 1}</div>
-                    ${levelSelect(seiteCur, `setSeiteLevel(${sIdx}, this.value)`)}
-                </div>`;
+                <div class="seite-header" onclick="toggleSeite(${sIdx})">
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <span style="color:var(--gold);font-size:0.7rem;font-weight:900;">S${sNr}</span>
+                        <span style="font-size:0.6rem;color:#555;">${pCount} Panels</span>
+                        <span style="font-size:0.65rem;">${sIcon}</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:6px;" onclick="event.stopPropagation()">
+                        ${levelSelect(seiteCur, `setSeiteLevel(${sIdx}, this.value)`)}
+                        <span id="seite-arrow-${sIdx}" style="color:#444;font-size:0.7rem;">▼</span>
+                    </div>
+                </div>
+                <div class="seite-panels" id="seite-panels-${sIdx}">`;
+
             seite.panels.forEach((p, pIdx) => {
                 const panelCur = p.level ? p.level : (p.members || p.bonus ? 'bronze' : 'free');
+                const fmt = p.format || (p.wide?'16:9':p.tall?'9:16':'1:1');
+                const fmtColor = {'16:9':'#4a9eff','1:1':'#d4af37','3:5':'#a855f7','9:16':'#ff6b35'}[fmt]||'#888';
+                const story = (p.story||'').substring(0,60) + ((p.story||'').length>60?'…':'');
+
                 html += `
                     <div class="panel-row">
-                        <div class="panel-meta">
-                            P${pIdx + 1}
+                        <div style="display:flex;align-items:center;gap:6px;min-width:0;">
+                            <span style="color:var(--gold);font-weight:900;font-size:0.65rem;white-space:nowrap;">P${pIdx+1}</span>
+                            <span style="font-size:0.5rem;color:${fmtColor};font-weight:900;white-space:nowrap;">${fmt}</span>
                             ${levelSelect(panelCur, `setPanelLevel(${sIdx}, ${pIdx}, this.value)`)}
                         </div>
-                        <div style="font-size:0.65rem; color:#888;">
-                            <strong>S:</strong> ${p.story || '...'}<br>
-                            <strong>K:</strong> ${p.skript || '...'}
+                        <div class="panel-story-short" title="${(p.story||'').replace(/"/g,"'")}">
+                            ${story || '<span style="color:#333">–</span>'}
                         </div>
-                        <button class="btn btn-sec" style="padding:5px;" onclick="openPromptEngine('${currentHeftId}', ${sIdx}, ${pIdx})">🎨</button>
+                        <button class="btn btn-sec" style="padding:4px;font-size:0.7rem;" onclick="openPromptEngine('${currentHeftId}', ${sIdx}, ${pIdx})">🎨</button>
                     </div>`;
             });
+
+            html += `</div>`;
         });
         container.innerHTML = html;
+    }
+
+    function toggleSeite(sIdx) {
+        const panels = document.getElementById(`seite-panels-${sIdx}`);
+        const arrow  = document.getElementById(`seite-arrow-${sIdx}`);
+        const isOpen = panels.classList.contains('open');
+        panels.classList.toggle('open', !isOpen);
+        arrow.textContent = isOpen ? '▼' : '▲';
     }
 
     function setHeftLevel(val) {
