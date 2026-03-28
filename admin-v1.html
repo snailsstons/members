@@ -291,7 +291,7 @@
                             <strong>S:</strong> ${p.story || '...'}<br>
                             <strong>K:</strong> ${p.skript || '...'}
                         </div>
-                        <button class="btn btn-sec" style="padding:5px;">🎨</button>
+                        <button class="btn btn-sec" style="padding:5px;" onclick="openPromptEngine('${currentHeftId}', ${sIdx}, ${pIdx})">🎨</button>
                     </div>`;
             });
         });
@@ -675,6 +675,32 @@
         el.style.border = `1px solid ${color}`;
         el.style.color = color;
         el.innerHTML = msg;
+    }
+
+    // --- PROMPT ENGINE ---
+    function openPromptEngine(heftId, sIdx, pIdx) {
+        const h = hefte[heftId];
+        if (!h) return;
+        const seite = h.seiten[sIdx];
+        if (!seite) return;
+        const p = seite.panels[pIdx];
+        if (!p) return;
+
+        const sNr = seite.nummer || sIdx + 1;
+        const pNr = pIdx + 1;
+
+        const params = new URLSearchParams({
+            heft:   heftId,
+            seite:  sNr,
+            panel:  pNr,
+            type:   'panel',
+            ar:     p.format || (p.wide ? '16:9' : p.tall ? '9:16' : '1:1'),
+            story:  encodeURIComponent(p.story   || ''),
+            locDna: encodeURIComponent(p.locDna  || ''),
+            skript: encodeURIComponent(p.skript  || ''),
+        });
+
+        window.open(`prompt-engine.html?${params.toString()}`, '_blank');
     }
 
     window.onload = init;
