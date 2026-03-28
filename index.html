@@ -36,49 +36,19 @@
         window.hasRendered = false;
         window.activeFilter = null;
 
-        function ghConfig() {
-            return {
-                repo: localStorage.getItem('gh_repo'),
-                branch: localStorage.getItem('gh_branch') || 'main',
-                token: localStorage.getItem('gh_token')
-            };
-        }
-
-        async function loadHefteFromGitHub() {
-            const { repo, branch, token } = ghConfig();
-            if (!repo || !token) return false;
-            try {
-                const res = await fetch(`https://api.github.com/repos/${repo}/contents/data?ref=${branch}`, {
-                    headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
-                });
-                if (!res.ok) return false;
-                const files = await res.json();
-                const heftFiles = files.filter(f => f.name.match(/^heft\d+\.js$/));
-                for (const f of heftFiles) {
-                    const code = await (await fetch(f.download_url)).text();
-                    try { new Function('hefte', code)(window.hefte); } catch(e) {}
-                }
-                return true;
-            } catch(e) { return false; }
-        }
-
-        async function loadHefteFallback() {
+        async function initGallery() {
+            // Immer lokal laden – Cloudflare liefert die Dateien aus
             const ids = [0, ...Array.from({length: 30}, (_, i) => i + 1)];
             let loaded = 0;
-            return new Promise(resolve => {
+            await new Promise(resolve => {
                 ids.forEach(id => {
                     const s = document.createElement('script');
                     s.src = `data/heft${id}.js?v=` + Date.now();
                     s.onload = s.onerror = () => { if (++loaded >= ids.length) resolve(); };
                     document.head.appendChild(s);
                 });
-                setTimeout(resolve, 2000);
+                setTimeout(resolve, 2500);
             });
-        }
-
-        async function initGallery() {
-            const ghOk = await loadHefteFromGitHub();
-            if (!ghOk) await loadHefteFallback();
             renderGallery();
         }
 
