@@ -1,7 +1,7 @@
 hefte["3"] = {
   "titel": "Heft 3",
   "cover": "cover.jpg",
-  "released": true,
+  "released": false,
   "locDna": "",
   "teaser": "Strand, Hafen, Altstadt – Gandia ruft! Felix jubelt, Stella glänzt, Archie doziert, Luna schweigt. Die vier erobern die Stadt – im Schneckentempo, natürlich. 🐌🌆",
   "coverStory": "",
