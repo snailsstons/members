@@ -268,7 +268,8 @@
                 const icon = l==='free'?'🔓':l==='bronze'?'🥉':l==='silver'?'🥈':'🥇';
                 return `<option value="${l}" ${cur===l?'selected':''}>${icon} ${l.charAt(0).toUpperCase()+l.slice(1)}</option>`;
             }).join('');
-            return `<select style="width:auto;padding:3px 6px;font-size:0.6rem;background:#111;color:#fff;border:1px solid #444;border-radius:4px;" onchange="${onChange}">${opts}</select>`;
+            const fn = onChange.replace('this.value', 'this.options[this.selectedIndex].value');
+            return `<select style="width:auto;padding:3px 6px;font-size:0.6rem;background:#111;color:#fff;border:1px solid #444;border-radius:4px;" onchange="${fn}">${opts}</select>`;
         };
 
         let html = "";
