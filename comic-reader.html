@@ -542,24 +542,59 @@
 
         const pUrl = new URLSearchParams(window.location.search);
         
-        function isMember() {
+        const LEVEL_RANK = { 'bronze': 1, 'silver': 2, 'gold': 3 };
+
+        function getMemberLevel() {
             const token = localStorage.getItem('ss_member_token');
             const bis   = localStorage.getItem('ss_member_bis');
-            if (!token || !bis) return false;
-            const today = new Date().toISOString().split('T')[0];
-            return today <= bis;
+            // Eingeloggt und gültig
+            if (token && bis && new Date().toISOString().split('T')[0] <= bis) {
+                return localStorage.getItem('ss_member_level') || 'bronze';
+            }
+            // Gast bekommt automatisch Bronze
+            return 'bronze';
+        }
+
+        function isMember() { return true; } // Alle sind "Member" – Level entscheidet was sichtbar ist
+
+        function hasLevel(required) {
+            return (LEVEL_RANK[getMemberLevel()] || 0) >= (LEVEL_RANK[required || 'bronze'] || 1);
         }
 
         const HEFT_ID = pUrl.get('heft') || '1';
         const container = document.getElementById('viewport');
         let currentData = null;
 
+        function ghConfig() {
+            return {
+                repo: localStorage.getItem('gh_repo'),
+                branch: localStorage.getItem('gh_branch') || 'main',
+                token: localStorage.getItem('gh_token')
+            };
+        }
+
         async function loadHeft() {
+            const { repo, branch, token } = ghConfig();
+            if (repo && token) {
+                try {
+                    const url = `https://raw.githubusercontent.com/${repo}/${branch}/data/heft${HEFT_ID}.js`;
+                    const res = await fetch(url, {
+                        headers: { Authorization: `token ${token}` }
+                    });
+                    if (res.ok) {
+                        const code = await res.text();
+                        new Function('hefte', code)(window.hefte);
+                        onHeftLoaded();
+                        return;
+                    }
+                } catch(e) {}
+            }
+            // Fallback: lokal
             const s = document.createElement('script');
             s.src = `data/heft${HEFT_ID}.js?v=` + Date.now();
             s.onload = onHeftLoaded;
             s.onerror = () => {
-                container.innerHTML = `<h2 style="color:red; text-align:center; margin-top:150px;">Fehler: Heft ${HEFT_ID} nicht gefunden.</h2>`;
+                container.innerHTML = `<h2 style="color:red; text-align:center; margin-top:150px;">Fehler: Die Datei "data/heft${HEFT_ID}.js" fehlt!</h2>`;
             };
             document.head.appendChild(s);
         }
@@ -692,9 +727,12 @@
 
             document.getElementById('info-display').innerText = `HEFT ${HEFT_ID} | SEITE 1 von ${currentData.seiten.length}`;
             if (isMember()) {
+                const lvl = getMemberLevel();
+                const token = localStorage.getItem('ss_member_token');
+                const lvlIcon = lvl === 'gold' ? '🥇' : lvl === 'silver' ? '🥈' : '🥉';
                 const badge = document.createElement('div');
                 badge.style.cssText = 'position:fixed;top:8px;right:8px;font-size:0.5rem;font-weight:900;color:#000;background:var(--gold);padding:3px 8px;border-radius:10px;letter-spacing:1px;z-index:50;';
-                badge.textContent = '⭐ MEMBER';
+                badge.textContent = token ? `${lvlIcon} ${lvl.toUpperCase()}` : `${lvlIcon} GAST`;
                 document.body.appendChild(badge);
             }
             updateOGTags(HEFT_ID, currentData);
