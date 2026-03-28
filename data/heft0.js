@@ -35,8 +35,7 @@ hefte["0"] = {
           "caption": ""
         }
       ],
-      "members": true,
-      "level": "gold"
+      "members": false
     }
   ],
   "members": true,
