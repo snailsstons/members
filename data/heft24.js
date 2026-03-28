@@ -60,7 +60,9 @@ hefte["24"] = {
           "locDna": "Grau de Gandia, die alte Hafenstraße. Im Hintergrund das Meer, die Boote. Der Weg führt an der Marina entlang. Morgensonne, die Luft riecht nach Salz.",
           "story": "Die vier gleiten die Straße hinunter. Felix voraus, Stella, Archie, Luna.",
           "skript": "**BILDTEXT:** (Möwen, entferntes Motorengeräusch)",
-          "caption": ""
+          "caption": "",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "24_2_P2.jpg",
@@ -92,7 +94,9 @@ hefte["24"] = {
           "skript": "**BILDTEXT:** (kein Dialog) – *Kamera hält auf die alten Backsteingebäude.*",
           "caption": ""
         }
-      ]
+      ],
+      "members": true,
+      "level": "silver"
     },
     {
       "nummer": 3,
@@ -137,7 +141,9 @@ hefte["24"] = {
           "skript": "**DIALOG** Stella: „Heute sind wir nur Gäste.“ – *Kamera hält auf die offene Tür.*",
           "caption": ""
         }
-      ]
+      ],
+      "members": true,
+      "level": "silver"
     },
     {
       "nummer": 4,
@@ -182,7 +188,9 @@ hefte["24"] = {
           "skript": "**BILDTEXT:** (kein Dialog) – *Kamera hält auf die filigranen Modelle.*",
           "caption": ""
         }
-      ]
+      ],
+      "members": true,
+      "level": "silver"
     },
     {
       "nummer": 5,
@@ -227,7 +235,9 @@ hefte["24"] = {
           "skript": "**BILDTEXT:** (kein Dialog) – *Kamera hält auf das detailreiche Modell.*",
           "caption": ""
         }
-      ]
+      ],
+      "members": true,
+      "level": "silver"
     },
     {
       "nummer": 6,
@@ -272,7 +282,9 @@ hefte["24"] = {
           "skript": "**DIALOG** Felix: „Die haben echte Kanonen! Na ja, kleine.“ – *Kamera hält auf die filigranen Geschütze.*",
           "caption": ""
         }
-      ]
+      ],
+      "members": true,
+      "level": "silver"
     },
     {
       "nummer": 7,
@@ -317,7 +329,9 @@ hefte["24"] = {
           "skript": "**BILDTEXT:** (kein Dialog) – *Kamera hält auf die Liebe zum Detail.*",
           "caption": ""
         }
-      ]
+      ],
+      "members": true,
+      "level": "silver"
     },
     {
       "nummer": 8,
@@ -362,7 +376,9 @@ hefte["24"] = {
           "skript": "**DIALOG** Felix: „Das gehört nicht ins Handy. Das gehört ins Herz.“ – *Kamera hält auf sein ernstes Gesicht.*",
           "caption": ""
         }
-      ]
+      ],
+      "members": true,
+      "level": "silver"
     },
     {
       "nummer": 9,
@@ -407,7 +423,9 @@ hefte["24"] = {
           "skript": "**BILDTEXT:** (kein Dialog) – *Kamera hält auf das riesige Modell.*",
           "caption": ""
         }
-      ]
+      ],
+      "members": true,
+      "level": "silver"
     },
     {
       "nummer": 10,
@@ -452,7 +470,9 @@ hefte["24"] = {
           "skript": "**DIALOG** Archie: „Nichts. Aber er baute ihre Schiffe nach. Aus Liebe zur Geschichte.“ – *Kamera hält auf Archies nachdenkliches Gesicht.*",
           "caption": ""
         }
-      ]
+      ],
+      "members": true,
+      "level": "silver"
     },
     {
       "nummer": 11,
@@ -497,7 +517,9 @@ hefte["24"] = {
           "skript": "**BILDTEXT:** (kein Dialog) – *Kamera hält auf Lunas friedliches Gesicht.*",
           "caption": ""
         }
-      ]
+      ],
+      "members": true,
+      "level": "silver"
     },
     {
       "nummer": 12,
@@ -542,7 +564,9 @@ hefte["24"] = {
           "skript": "**DIALOG** Archie: „Polit ist nicht tot. Er lebt in seinen Schiffen.“ – *Kamera hält auf Archies ernstes, fast melancholisches Gesicht.*",
           "caption": ""
         }
-      ]
+      ],
+      "members": true,
+      "level": "silver"
     },
     {
       "nummer": 13,
@@ -587,7 +611,9 @@ hefte["24"] = {
           "skript": "**BILDTEXT:** (Archie denkt:) „Salome. Ob sie noch tanzt?“ – *Kamera hält kurz auf sein nachdenkliches Gesicht, dann schweift er ab.*",
           "caption": ""
         }
-      ]
+      ],
+      "members": true,
+      "level": "silver"
     },
     {
       "nummer": 14,
@@ -632,7 +658,9 @@ hefte["24"] = {
           "skript": "**BILDTEXT:** (Stella denkt:) „War da jemand?“ – *Kamera hält auf den leeren Kai.*",
           "caption": ""
         }
-      ]
+      ],
+      "members": true,
+      "level": "silver"
     },
     {
       "nummer": 15,
@@ -677,7 +705,9 @@ hefte["24"] = {
           "skript": "**DIALOG** Archie: „Ein Tag wie ein Schatz.“ – *Kamera hält auf sein nachdenkliches Gesicht.*",
           "caption": ""
         }
-      ]
+      ],
+      "members": true,
+      "level": "silver"
     },
     {
       "nummer": 16,
@@ -722,7 +752,9 @@ hefte["24"] = {
           "skript": "**DIALOG** Luna (aus dem Off): „…bis zum nächsten Mal.“",
           "caption": ""
         }
-      ]
+      ],
+      "members": true,
+      "level": "silver"
     }
   ],
   "coverStory": "Im Hafen von Gandia versteckt sich eine Schatzkammer aus Holz und Leidenschaft – ein Museum voller handgebauter Schiffe. Felix will jedes Modell fotografieren, Archie doziert über die Geschichte des Hafens, Stella findet die Ästhetik der alten Schiffe zeitlos – und Luna spürt die Hingabe eines Mannes, der hier sein Lebenswerk schuf. Am Ende, fast unbemerkt, ein Blick in die Ferne."
