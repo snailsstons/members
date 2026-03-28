@@ -653,21 +653,24 @@
                 const slide = document.createElement('div');
                 slide.className = 'slide';
 
-                if (seite.members === true && !isMember()) {
+                if (seite.members === true && !hasLevel(seite.level || 'silver')) {
+                    const reqLevel = seite.level || 'silver';
+                    const lvlIcon = reqLevel==='gold'?'🥇':reqLevel==='silver'?'🥈':'🥉';
                     const lockedDiv = document.createElement('div');
                     lockedDiv.className = 'slide-locked';
                     const remaining = currentData.seiten.length - sIndex;
                     lockedDiv.innerHTML = `
-                        <div class="lock-big">⭐</div>
-                        <div class="lock-headline">Members Only</div>
+                        <div class="lock-big">${lvlIcon}</div>
+                        <div class="lock-headline">${reqLevel.toUpperCase()} Members Only</div>
                         <div class="lock-sub">
                             Diese und die folgenden <strong>${remaining}</strong> 
-                            Seite${remaining !== 1 ? 'n' : ''} sind exklusiv für Members.
+                            Seite${remaining !== 1 ? 'n' : ''} sind exklusiv für ${reqLevel} Members.<br>
+                            <em style="font-size:0.75rem;color:#888;">Leseprobe endet hier.</em>
                         </div>
                         <button class="lock-cta" onclick="window.location.href='members.html'">
                             🔓 JETZT FREISCHALTEN
                         </button>
-                        <div class="lock-pages">AB SEITE ${sIndex + 1} – MEMBERS ONLY</div>
+                        <div class="lock-pages">AB SEITE ${sIndex + 1} – ${reqLevel.toUpperCase()} ONLY</div>
                     `;
                     slide.appendChild(lockedDiv);
                     viewport.appendChild(slide);
@@ -687,13 +690,15 @@
                         wrap.classList.add('panel-full-width'); 
                     }
                     
-                    if (p.bonus === true && !isMember()) {
+                    if ((p.bonus === true || p.members === true) && !hasLevel(p.level || 'silver')) {
+                        const reqLevel = p.level || 'silver';
+                        const lvlIcon = reqLevel==='gold'?'🥇':reqLevel==='silver'?'🥈':'🥉';
                         wrap.classList.add('panel-full-width');
                         wrap.style.position = 'relative';
                         wrap.innerHTML = `
                             <div class="panel-bonus-lock">
-                                <div class="lock-ico">⭐</div>
-                                <div class="lock-txt">Members Only<br>Bonus Panel</div>
+                                <div class="lock-ico">${lvlIcon}</div>
+                                <div class="lock-txt">${reqLevel.toUpperCase()} Members<br>Bonus Panel</div>
                                 <button class="lock-btn" onclick="window.location.href='members.html'">JETZT FREISCHALTEN</button>
                             </div>`;
                         content.appendChild(wrap);

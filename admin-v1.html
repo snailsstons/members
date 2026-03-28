@@ -111,7 +111,6 @@
         <h2>Heft Meta-Daten
             <select id="heft-lock-btn" onchange="setHeftLevel(this.value)" style="width:auto;padding:3px 8px;font-size:0.65rem;background:#111;color:#fff;border:1px solid #444;border-radius:4px;">
                 <option value="free">🔓 Free</option>
-                <option value="bronze">🥉 Bronze</option>
                 <option value="silver">🥈 Silver</option>
                 <option value="gold">🥇 Gold</option>
             </select>
@@ -318,8 +317,8 @@
         if(!h || !h.seiten) { container.innerHTML = ''; return; }
 
         const levelSelect = (cur, onChange) => {
-            const opts = ['free','bronze','silver','gold'].map(l => {
-                const icon = l==='free'?'🔓':l==='bronze'?'🥉':l==='silver'?'🥈':'🥇';
+            const opts = ['free','silver','gold'].map(l => {
+                const icon = l==='free'?'🔓':l==='silver'?'🥈':'🥇';
                 return `<option value="${l}" ${cur===l?'selected':''}>${icon} ${l.charAt(0).toUpperCase()+l.slice(1)}</option>`;
             }).join('');
             const fn = onChange.replace('this.value', 'this.options[this.selectedIndex].value');
