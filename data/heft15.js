@@ -57,7 +57,7 @@ hefte["15"] = {
           "caption": ""
         }
       ],
-      "members": true
+      "members": false
     },
     {
       "nummer": 3,
@@ -707,5 +707,6 @@ hefte["15"] = {
       ],
       "members": true
     }
-  ]
+  ],
+  "members": false
 };
