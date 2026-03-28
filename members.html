@@ -204,7 +204,10 @@
     }
 
     function doLogout() {
-        localStorage.clear();
+        localStorage.removeItem("ss_member_token");
+        localStorage.removeItem("ss_member_von");
+        localStorage.removeItem("ss_member_bis");
+        localStorage.removeItem("ss_member_level");
         sessionStorage.removeItem('ss_last_reader_pos');
         window.location.href = 'index.html';
     }
