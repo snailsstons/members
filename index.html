@@ -51,7 +51,35 @@
             renderGallery();
         }
 
-        document.addEventListener('DOMContentLoaded', initGallery);
+        const LEVEL_RANK = { 'bronze': 1, 'silver': 2, 'gold': 3 };
+        function getMemberLevel() {
+            const token = localStorage.getItem('ss_member_token');
+            const bis = localStorage.getItem('ss_member_bis');
+            if (token && bis && new Date().toISOString().split('T')[0] <= bis) {
+                return localStorage.getItem('ss_member_level') || 'bronze';
+            }
+            return 'bronze';
+        }
+        function hasLevel(required) {
+            return (LEVEL_RANK[getMemberLevel()] || 0) >= (LEVEL_RANK[required || 'bronze'] || 1);
+        }
+        function showBookmark() {
+            if (!hasLevel('silver')) return;
+            try {
+                const bm = JSON.parse(localStorage.getItem('ss_bookmark'));
+                if (!bm) return;
+                document.getElementById('bookmark-text').textContent = `${bm.titel} – Seite ${bm.seite}`;
+                document.getElementById('bookmark-banner').style.display = 'block';
+            } catch(e) {}
+        }
+        function goToBookmark() {
+            try {
+                const bm = JSON.parse(localStorage.getItem('ss_bookmark'));
+                if (bm) window.location.href = `comic-reader.html?heft=${bm.heft}&seite=${bm.seite}`;
+            } catch(e) {}
+        }
+
+        document.addEventListener('DOMContentLoaded', () => { showBookmark(); initGallery(); });
 
         // NEU: Robuste Weiterleitungs-Funktion
         function openMembersPage() { window.location.href = 'members.html'; }
@@ -184,6 +212,11 @@
 
     <div class="header">
         <h1>Snails<span>Stons</span></h1>
+    </div>
+
+    <div id="bookmark-banner" style="display:none; margin:0 15px 10px; padding:12px 16px; background:rgba(212,175,55,0.12); border:1px solid rgba(212,175,55,0.4); border-radius:12px; cursor:pointer;" onclick="goToBookmark()">
+        <div style="font-size:0.6rem;font-weight:900;color:#888;text-transform:uppercase;letter-spacing:1px;">📖 Weiterlesen</div>
+        <div id="bookmark-text" style="font-size:0.85rem;font-weight:700;color:var(--gold);margin-top:3px;"></div>
     </div>
 
     <div class="char-hub">

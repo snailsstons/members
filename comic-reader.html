@@ -720,6 +720,16 @@
             updateProgress(0, currentData.seiten.length);
             updateStoryModal(0);
             checkPageAudio(0);
+
+            // Zur gespeicherten Seite springen wenn ?seite= in URL
+            const startSeite = parseInt(pUrl.get('seite') || '1') - 1;
+            if (startSeite > 0) {
+                setTimeout(() => {
+                    container.scrollTo({ left: startSeite * window.innerWidth, behavior: 'instant' });
+                    updateProgress(startSeite, currentData.seiten.length);
+                    updateStoryModal(startSeite);
+                }, 100);
+            }
             
             container.addEventListener('scroll', () => {
                 const curIndex = Math.round(container.scrollLeft / window.innerWidth);
@@ -728,6 +738,15 @@
                     updateStoryModal(curIndex);
                     if (curIndex !== currentAudioPage) checkPageAudio(curIndex);
                     updateProgress(curIndex, currentData.seiten.length);
+                    // Lesezeichen ab Silver speichern
+                    if (hasLevel('silver')) {
+                        localStorage.setItem('ss_bookmark', JSON.stringify({
+                            heft: HEFT_ID,
+                            seite: curIndex + 1,
+                            titel: currentData.titel || `Heft ${HEFT_ID}`,
+                            ts: Date.now()
+                        }));
+                    }
                 }
             }, {passive: true});
         }
