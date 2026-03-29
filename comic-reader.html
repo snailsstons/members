@@ -352,6 +352,7 @@
         // =====================================================
         let currentAudio = null;
         let currentAudioPage = -1;
+        let maxReached = 0;
 
         function stopPageAudio() {
             if (currentAudio) {
@@ -759,7 +760,11 @@
                     document.getElementById('info-display').innerText = `HEFT ${HEFT_ID} | SEITE ${curIndex + 1} von ${currentData.seiten.length}`;
                     updateStoryModal(curIndex);
                     if (curIndex !== currentAudioPage) checkPageAudio(curIndex);
-                    updateProgress(curIndex, currentData.seiten.length);
+                    // Nur vorwärts zählen – nie zurück
+                    if (curIndex > maxReached) {
+                        maxReached = curIndex;
+                        updateProgress(maxReached, currentData.seiten.length);
+                    }
                     // Lesezeichen ab Silver speichern
                     if (hasLevel('silver')) {
                         localStorage.setItem('ss_bookmark', JSON.stringify({
