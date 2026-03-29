@@ -16,7 +16,9 @@ hefte["14"] = {
           "skript": "**BILDTEXT:** (kein Dialog)",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "14_1_P2.jpg",
@@ -25,7 +27,9 @@ hefte["14"] = {
           "skript": "**BILDTEXT:** (Stella denkt:) „L'Ahuir. Zwei Kilometer feiner Sand. Offizieller FKK-Strand. Der einzige in Gandia mit höchster Schutzstufe.“",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "14_1_P3.jpg",
@@ -34,7 +38,9 @@ hefte["14"] = {
           "skript": "**BILDTEXT:** (Stella denkt:) „Rauchfreier Strand. Rettungsschwimmer. Polizeipräsenz. Also sicher. Und doch… ganz anders als die Playa Norte.“",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "14_1_P4.jpg",
@@ -43,7 +49,9 @@ hefte["14"] = {
           "skript": "**BILDTEXT:** (Stella denkt:) „Mein Harness schützt. Es definiert. Aber hier… hier scheint niemand etwas zu definieren.“",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "14_1_P5.jpg",
@@ -52,9 +60,12 @@ hefte["14"] = {
           "skript": "**BILDTEXT:** (kein Dialog) – *Kamera hält auf Stellas entschlossenes Gesicht, die offene Weite vor ihr.*",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 2,
@@ -66,7 +77,9 @@ hefte["14"] = {
           "skript": "**BILDTEXT:** (Stella denkt:) „Keine Schale. Kein Harness. Nichts.“",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "14_2_P2.jpg",
@@ -75,7 +88,9 @@ hefte["14"] = {
           "skript": "**DIALOG** Lúa (lächelnd): „Du bist neu hier, oder? Man sieht es am Harness.“",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "14_2_P3.jpg",
@@ -84,7 +99,9 @@ hefte["14"] = {
           "skript": "**DIALOG** Lúa: „Wir kommen jeden Sommer. Keine Schale, keine Regeln, keine Blicke.“",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "14_2_P4.jpg",
@@ -93,7 +110,9 @@ hefte["14"] = {
           "skript": "**DIALOG** Lúa: „Was soll uns verletzen? Die Sonne? Der Sand?“",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "14_2_P5.jpg",
@@ -102,9 +121,12 @@ hefte["14"] = {
           "skript": "**BILDTEXT:** (Stella denkt:) „Sie haben keine Schale. Kein Harness. Und doch wirken sie… vollständig.“ – *Kamera hält auf Stellas nachdenkliches Gesicht.*",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 3,
@@ -116,7 +138,9 @@ hefte["14"] = {
           "skript": "(kein Dialog)",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "14_3_P2.jpg",
@@ -125,7 +149,9 @@ hefte["14"] = {
           "skript": "**BILDTEXT:** (Stella denkt:) „Es ist nur ein Harness. Es schützt mich. Aber wovor eigentlich?“",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "14_3_P3.jpg",
@@ -134,7 +160,9 @@ hefte["14"] = {
           "skript": "**BILDTEXT:** (Stella denkt:) „Vor Blicken? Vor Urteilen? Vor mir selbst?“",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "14_3_P4.jpg",
@@ -143,7 +171,9 @@ hefte["14"] = {
           "skript": "**BILDTEXT:** (Stella denkt:) „Leicht. Das ist es. Einfach nur leicht.“",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "14_3_P5.jpg",
@@ -152,9 +182,12 @@ hefte["14"] = {
           "skript": "**BILDTEXT:** (kein Dialog) – *Kamera hält auf die drei Schnecken, die schweigend den Moment teilen.*",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 4,
@@ -166,7 +199,9 @@ hefte["14"] = {
           "skript": "**DIALOG** Mar: „Deine Freunde – tragen sie auch so etwas?“",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "14_4_P2.jpg",
@@ -175,7 +210,9 @@ hefte["14"] = {
           "skript": "**DIALOG** Lúa: „Komm wieder. Ohne das Ding.“",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "14_4_P3.jpg",
@@ -184,7 +221,9 @@ hefte["14"] = {
           "skript": "**BILDTEXT:** (Stella denkt:) „Ein Strand, an dem Kleidung zur Option wird. Und ich war ohne Harness. Und es war… nichts. Und alles.“",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "14_4_P4.jpg",
@@ -193,16 +232,21 @@ hefte["14"] = {
           "skript": "**BILDTEXT:** (kein Dialog) – *Kamera hält auf die untergehende Sonne und die winzige Silhouette der schalenlosen Schnecken.*",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "14_4_P5.jpg",
           "locDna": "",
           "story": "",
-          "skript": ""
+          "skript": "",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     }
   ],
-  "members": true
+  "members": false
 };
