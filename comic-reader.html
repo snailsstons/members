@@ -598,6 +598,13 @@
                 html += `<div class="modal-panel-num">PANEL ${i + 1}</div>`;
                 if (p.story)  html += `<div class="modal-story-text">${p.story}</div>`;
                 if (p.skript) html += `<div class="modal-dialog">${p.skript}</div>`;
+                if (p.makingOf && hasLevel('silver')) {
+                    html += `
+                        <div style="margin-top:10px;padding:10px 12px;background:rgba(212,175,55,0.07);border-left:2px solid rgba(212,175,55,0.4);border-radius:4px;">
+                            <div style="font-size:0.45rem;font-weight:900;color:rgba(212,175,55,0.6);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;">🎬 Making Of</div>
+                            <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);line-height:1.5;">${p.makingOf}</div>
+                        </div>`;
+                }
                 html += `</div>`;
             });
             document.getElementById('modal-panels').innerHTML = html || '<p style="color:#555;font-size:0.8rem;">Kein Text für diese Seite.</p>';
