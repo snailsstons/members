@@ -24,7 +24,8 @@
 
     <script>
         // --- DEINE PLAYLISTS (KATEGORIEN) ---
-        const playlistMap = [
+        // Playlists werden aus playlists.js geladen
+        window.playlistMap = window.playlistMap || [
             { titel: "Gandia und Umgebung", hefte: [18, 19, 20] },
             { titel: "Die Borgia Route", hefte: [] },
             { titel: "Valencia Vibes", hefte: [15] },
@@ -37,6 +38,14 @@
         window.activeFilter = null;
 
         async function initGallery() {
+            // playlists.js laden
+            await new Promise(resolve => {
+                const s = document.createElement('script');
+                s.src = `playlists.js?v=` + Date.now();
+                s.onload = s.onerror = resolve;
+                document.head.appendChild(s);
+            });
+            // Hefte laden
             const ids = [0, ...Array.from({length: 30}, (_, i) => i + 1)];
             let loaded = 0;
             await new Promise(resolve => {
@@ -311,7 +320,7 @@
             let totalHefteFound = 0;
             let assignedHefteIds = new Set();
 
-            playlistMap.forEach(cat => {
+            window.playlistMap.forEach(cat => {
                 let catHtml = '';
                 let hasItems = false;
 

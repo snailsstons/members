@@ -126,6 +126,15 @@
     </div>
 
     <div class="card">
+        <h2>📋 Rubriken & Playlisten
+            <button class="btn-lock" style="font-size:0.5rem;" onclick="addRubrik()">+ NEU</button>
+        </h2>
+        <div id="rubrik-list"></div>
+        <button class="btn" style="margin-top:12px; background:var(--success);" onclick="pushPlaylists()">🚀 RUBRIKEN → GITHUB</button>
+        <div id="rubrik-push-status" style="display:none; margin-top:8px; padding:8px; border-radius:8px; font-size:0.75rem;"></div>
+    </div>
+
+    <div class="card">
         <h2>Story Import</h2>
         <div style="background: #080808; border: 2px dashed #333; padding: 20px; border-radius: 8px; text-align: center;">
             <input type="file" id="md-file" class="hidden" accept=".md" onchange="importStoryMD(this)">
@@ -237,6 +246,7 @@
         renderHeftSelector();
         renderMembers();
         loadGHConfig();
+        loadPlaylists();
     }
 
     async function blindSync() {
@@ -908,6 +918,124 @@
 
     function closeMoModal() {
         document.getElementById('mo-modal').style.display = 'none';
+    }
+
+    // --- RUBRIKEN ---
+    let playlists = [
+        { titel: "Gandia und Umgebung", hefte: [18, 19, 20] },
+        { titel: "Die Borgia Route", hefte: [] },
+        { titel: "Valencia Vibes", hefte: [15] },
+        { titel: "Shorts", hefte: [23, 24, 25] },
+        { titel: "🖇️ Experimente, Schmierheft", hefte: [0] },
+        { titel: "⭐ Members Only", hefte: [], membersOnly: true }
+    ];
+
+    function loadPlaylists() {
+        const saved = localStorage.getItem('snail_playlists');
+        if (saved) playlists = JSON.parse(saved);
+        renderRubriken();
+    }
+
+    function savePlaylists() {
+        localStorage.setItem('snail_playlists', JSON.stringify(playlists));
+    }
+
+    function renderRubriken() {
+        const container = document.getElementById('rubrik-list');
+        if (!container) return;
+        const heftIds = Object.keys(hefte).sort((a,b) => parseInt(a)-parseInt(b));
+
+        container.innerHTML = playlists.map((r, rIdx) => `
+            <div style="background:#0a0a0a;border:1px solid #222;border-radius:8px;padding:10px;margin-bottom:8px;">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+                    <div style="display:flex;flex-direction:column;gap:2px;">
+                        <button onclick="moveRubrik(${rIdx},-1)" style="background:none;border:none;color:#555;cursor:pointer;font-size:0.6rem;padding:0;" ${rIdx===0?'disabled':''}>▲</button>
+                        <button onclick="moveRubrik(${rIdx},1)" style="background:none;border:none;color:#555;cursor:pointer;font-size:0.6rem;padding:0;" ${rIdx===playlists.length-1?'disabled':''}>▼</button>
+                    </div>
+                    <input type="text" value="${r.titel}" onchange="renameRubrik(${rIdx}, this.value)"
+                        style="flex:1;padding:6px 8px;font-size:0.75rem;background:#111;border:1px solid #333;color:#fff;border-radius:6px;">
+                    <label style="font-size:0.55rem;color:#666;display:flex;align-items:center;gap:3px;white-space:nowrap;">
+                        <input type="checkbox" ${r.membersOnly?'checked':''} onchange="toggleMembersOnly(${rIdx}, this.checked)"> Members
+                    </label>
+                    <button onclick="deleteRubrik(${rIdx})" style="background:none;border:none;color:#444;cursor:pointer;font-size:0.9rem;">🗑</button>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px;">
+                    ${r.hefte.map((id, hIdx) => `
+                        <span style="background:#1a1a1a;border:1px solid #333;border-radius:4px;padding:2px 6px;font-size:0.6rem;color:var(--gold);display:flex;align-items:center;gap:4px;">
+                            ${id}: ${hefte[id]?.titel || '?'}
+                            <button onclick="removeHeftFromRubrik(${rIdx},${hIdx})" style="background:none;border:none;color:#555;cursor:pointer;font-size:0.7rem;padding:0;">✕</button>
+                        </span>`).join('')}
+                </div>
+                <div style="display:flex;gap:6px;">
+                    <select id="rubrik-heft-add-${rIdx}" style="flex:1;padding:4px;font-size:0.65rem;background:#111;border:1px solid #333;color:#fff;border-radius:6px;">
+                        <option value="">Heft hinzufügen...</option>
+                        ${heftIds.filter(id => !r.hefte.includes(parseInt(id))).map(id =>
+                            `<option value="${id}">Heft ${id}: ${hefte[id]?.titel || '?'}</option>`
+                        ).join('')}
+                    </select>
+                    <button onclick="addHeftToRubrik(${rIdx})" class="btn btn-sec" style="width:auto;padding:4px 10px;font-size:0.65rem;">+</button>
+                </div>
+            </div>`).join('');
+    }
+
+    function addRubrik() {
+        playlists.push({ titel: 'Neue Rubrik', hefte: [] });
+        savePlaylists(); renderRubriken();
+    }
+
+    function renameRubrik(idx, val) {
+        playlists[idx].titel = val;
+        savePlaylists();
+    }
+
+    function deleteRubrik(idx) {
+        if (!confirm(`"${playlists[idx].titel}" löschen?`)) return;
+        playlists.splice(idx, 1);
+        savePlaylists(); renderRubriken();
+    }
+
+    function moveRubrik(idx, dir) {
+        const newIdx = idx + dir;
+        if (newIdx < 0 || newIdx >= playlists.length) return;
+        [playlists[idx], playlists[newIdx]] = [playlists[newIdx], playlists[idx]];
+        savePlaylists(); renderRubriken();
+    }
+
+    function toggleMembersOnly(idx, val) {
+        playlists[idx].membersOnly = val;
+        savePlaylists();
+    }
+
+    function addHeftToRubrik(idx) {
+        const sel = document.getElementById(`rubrik-heft-add-${idx}`);
+        const id = parseInt(sel.value);
+        if (!id && id !== 0) return;
+        if (!playlists[idx].hefte.includes(id)) {
+            playlists[idx].hefte.push(id);
+            savePlaylists(); renderRubriken();
+        }
+    }
+
+    function removeHeftFromRubrik(rIdx, hIdx) {
+        playlists[rIdx].hefte.splice(hIdx, 1);
+        savePlaylists(); renderRubriken();
+    }
+
+    async function pushPlaylists() {
+        const content = `window.playlistMap = ${JSON.stringify(playlists, null, 2)};\n`;
+        const el = document.getElementById('rubrik-push-status');
+        el.style.display = 'block';
+        el.style.color = '#888'; el.style.border = '1px solid #333';
+        el.textContent = '⏳ Pushe playlists.js...';
+        const ok = await ghPushFile('playlists.js', content, 'Admin: Update playlists.js');
+        if (ok) {
+            el.style.color = 'var(--success)'; el.style.border = '1px solid var(--success)';
+            el.textContent = '✅ playlists.js → GitHub ✓';
+            showStatus('Rubriken gespeichert!');
+        } else {
+            el.style.color = 'var(--danger)'; el.style.border = '1px solid var(--danger)';
+            el.textContent = '❌ Push fehlgeschlagen.';
+        }
     }
 
     window.onload = init;
