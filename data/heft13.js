@@ -1,5 +1,5 @@
 hefte["13"] = {
-  "titel": "Heft 13..",
+  "titel": "Heft 13",
   "cover": "cover.jpg",
   "released": false,
   "locDna": "",
@@ -161,5 +161,6 @@ hefte["13"] = {
       ]
     }
   ],
-  "members": true
+  "members": true,
+  "level": "gold"
 };
