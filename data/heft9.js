@@ -161,5 +161,5 @@ hefte["9"] = {
       ]
     }
   ],
-  "members": true
+  "members": false
 };
