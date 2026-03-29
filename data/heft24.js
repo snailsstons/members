@@ -53,7 +53,12 @@ hefte["24"] = {
           "skript": "**DIALOG** Stella: „Ein Mann, der sein Leben lang Schiffe baute. Das ist mehr als ein Museum.“ – *Kamera hält auf das warme Morgenlicht.*",
           "caption": "",
           "members": false,
-          "bonus": false
+          "bonus": false,
+          "werbung": {
+            "bild": "24_1_P0.jpg",
+            "link": "https://despistecafe.es/cafeteria/estacion-de-gandia/",
+            "alt": "Cafe am Busbahnhof Gandía"
+          }
         }
       ],
       "members": false
