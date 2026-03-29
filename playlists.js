@@ -4,12 +4,10 @@ window.playlistMap = [
     "hefte": [
       18,
       19,
-      20
+      20,
+      16,
+      17
     ]
-  },
-  {
-    "titel": "Die Borgia Route",
-    "hefte": []
   },
   {
     "titel": "Valencia Vibes",
