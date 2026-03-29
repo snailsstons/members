@@ -20,12 +20,7 @@ hefte["0"] = {
           "skript": "",
           "caption": "",
           "members": false,
-          "bonus": false,
-          "werbung": {
-            "bild": "0_1_P0.jpg",
-            "link": "https://despistecafe.es/cafeteria/estacion-de-gandia/",
-            "alt": "Busbahnhof"
-          }
+          "bonus": false
         },
         {
           "bild": "0_1_P2.jpg",
