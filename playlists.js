@@ -11,7 +11,7 @@ window.playlistMap = [
     ]
   },
   {
-    "titel": "Valencia Vibes",
+    "titel": "Valencia Tour",
     "hefte": [
       15
     ]
