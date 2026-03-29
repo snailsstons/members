@@ -18,9 +18,7 @@ window.playlistMap = [
   {
     "titel": "Shorts",
     "hefte": [
-      23,
-      24,
-      25
+      23
     ]
   },
   {
