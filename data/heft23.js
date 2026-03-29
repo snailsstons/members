@@ -1,13 +1,11 @@
 hefte["23"] = {
   "titel": "Die vergessene Welt",
   "teaser": "Tief unter den Bergen von Gandia verbirgt sich ein Labyrinth aus Kristallen und geheimen Kammern – die größte Höhle der Region. Felix will unbedingt hinein, Archie warnt vor den Gefahren, Stella findet die Kristalle ästhetisch faszinierend – und Luna spürt die Stille unter der Erde. Aber der Weg dorthin ist nicht einfach.",
-  "released": true,
+  "released": false,
   "cover": "cover.jpg",
   "seiten": [
     {
       "nummer": 1,
-      "titel": "Im Café",
-      "akt": "AKT 1 – SETUP: Der Plan",
       "panels": [
         {
           "bild": "23_1_P1.jpg",
@@ -53,8 +51,6 @@ hefte["23"] = {
     },
     {
       "nummer": 2,
-      "titel": "Die Warnung",
-      "akt": "AKT 1 – SETUP: Der Plan",
       "panels": [
         {
           "bild": "23_2_P1.jpg",
@@ -100,8 +96,6 @@ hefte["23"] = {
     },
     {
       "nummer": 3,
-      "titel": "Die Route",
-      "akt": "AKT 1 – SETUP: Der Plan",
       "panels": [
         {
           "bild": "23_3_P1.jpg",
@@ -147,8 +141,6 @@ hefte["23"] = {
     },
     {
       "nummer": 4,
-      "titel": "Aufbruch",
-      "akt": "AKT 1 – SETUP: Der Plan",
       "panels": [
         {
           "bild": "23_4_P1.jpg",
@@ -194,8 +186,6 @@ hefte["23"] = {
     },
     {
       "nummer": 5,
-      "titel": "Die Marjal",
-      "akt": "AKT 2 – KONFRONTATION: Der Weg zur Höhle",
       "panels": [
         {
           "bild": "23_5_P1.jpg",
@@ -241,8 +231,6 @@ hefte["23"] = {
     },
     {
       "nummer": 6,
-      "titel": "Cova de la Verge",
-      "akt": "AKT 2 – KONFRONTATION: Der Weg zur Höhle",
       "panels": [
         {
           "bild": "23_6_P1.jpg",
@@ -288,8 +276,6 @@ hefte["23"] = {
     },
     {
       "nummer": 7,
-      "titel": "Der Eingang",
-      "akt": "AKT 2 – KONFRONTATION: Der Weg zur Höhle",
       "panels": [
         {
           "bild": "23_7_P1.jpg",
@@ -335,8 +321,6 @@ hefte["23"] = {
     },
     {
       "nummer": 8,
-      "titel": "Das Labyrinth",
-      "akt": "AKT 2 – KONFRONTATION: Der Weg zur Höhle",
       "panels": [
         {
           "bild": "23_8_P1.jpg",
@@ -382,8 +366,6 @@ hefte["23"] = {
     },
     {
       "nummer": 9,
-      "titel": "Die Kristalle",
-      "akt": "AKT 2 – KONFRONTATION: Der Weg zur Höhle",
       "panels": [
         {
           "bild": "23_9_P1.jpg",
@@ -429,8 +411,6 @@ hefte["23"] = {
     },
     {
       "nummer": 10,
-      "titel": "Die verlorenen Wege",
-      "akt": "AKT 2 – KONFRONTATION: Der Weg zur Höhle",
       "panels": [
         {
           "bild": "23_10_P1.jpg",
@@ -476,8 +456,6 @@ hefte["23"] = {
     },
     {
       "nummer": 11,
-      "titel": "Lunas Pause",
-      "akt": "AKT 2 – KONFRONTATION: Der Weg zur Höhle",
       "panels": [
         {
           "bild": "23_11_P1.jpg",
@@ -523,8 +501,6 @@ hefte["23"] = {
     },
     {
       "nummer": 12,
-      "titel": "Der Rückweg",
-      "akt": "AKT 3 – AUFLÖSUNG: Die Rückkehr ans Licht",
       "panels": [
         {
           "bild": "23_12_P1.jpg",
@@ -570,8 +546,6 @@ hefte["23"] = {
     },
     {
       "nummer": 13,
-      "titel": "Das Tageslicht",
-      "akt": "AKT 3 – AUFLÖSUNG: Die Rückkehr ans Licht",
       "panels": [
         {
           "bild": "23_13_P1.jpg",
@@ -617,8 +591,6 @@ hefte["23"] = {
     },
     {
       "nummer": 14,
-      "titel": "Die Rückkehr durch die Marjal",
-      "akt": "AKT 3 – AUFLÖSUNG: Die Rückkehr ans Licht",
       "panels": [
         {
           "bild": "23_14_P1.jpg",
@@ -664,8 +636,6 @@ hefte["23"] = {
     },
     {
       "nummer": 15,
-      "titel": "Das Café im Abendlicht",
-      "akt": "AKT 3 – AUFLÖSUNG: Die Rückkehr ans Licht",
       "panels": [
         {
           "bild": "23_15_P1.jpg",
@@ -711,8 +681,6 @@ hefte["23"] = {
     },
     {
       "nummer": 16,
-      "titel": "Ende",
-      "akt": "AKT 3 – AUFLÖSUNG: Die Rückkehr ans Licht",
       "panels": [
         {
           "bild": "23_16_P1.jpg",
