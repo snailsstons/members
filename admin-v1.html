@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>SnailsAdmin | v10.0 (Member & Guardian)</title>
+    <link rel="manifest" href="manifest_admin.json">
+    <meta name="theme-color" content="#d4af37">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SnailsAdmin">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <script>
         // Sicheres hefte-Objekt – auch wenn hefte.js fehlt oder leer ist
@@ -37,7 +43,12 @@
         .btn-lock { background: transparent; border: 1px solid #444; color: #666; padding: 4px 8px; font-size: 0.6rem; border-radius: 4px; }
         .btn-lock.active { background: var(--danger); border-color: #fff; color: #fff; }
 
-        .panel-row { background: #080808; border: 1px solid #222; border-radius: 8px; padding: 12px; margin-bottom: 10px; display: grid; grid-template-columns: 120px 1fr 100px; gap: 15px; align-items: start; }
+        .panel-row { background: #080808; border: 1px solid #1a1a1a; border-radius: 6px; padding: 6px 10px; margin-bottom: 4px; display: grid; grid-template-columns: 180px 1fr 40px; gap: 8px; align-items: center; }
+        .seite-header { display:flex; justify-content:space-between; align-items:center; padding: 8px 10px; background:#0d0d0d; border:1px solid #222; border-radius:8px; margin-top:8px; cursor:pointer; user-select:none; }
+        .seite-header:hover { border-color:#333; }
+        .seite-panels { display:none; padding: 4px 0 4px 0; }
+        .seite-panels.open { display:block; }
+        .panel-story-short { font-size:0.6rem; color:#666; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%; }
         .panel-meta { color: var(--gold); font-weight: 900; font-size: 0.65rem; display: flex; align-items: center; gap: 10px; }
         
         #status-msg { position: fixed; bottom: 0; left: 0; right: 0; background: var(--success); color: #fff; padding: 10px; text-align: center; font-weight: 700; transform: translateY(100%); transition: 0.3s; z-index: 2000; }
@@ -59,6 +70,7 @@
     <div style="display:flex; gap:10px; margin-top:15px; max-width:800px; margin-left:auto; margin-right:auto;">
         <select id="heft-select" onchange="loadHeft(this.value)"></select>
         <button class="btn btn-sec" style="width:auto; padding: 0 20px;">+</button>
+        <button id="pwa-install-btn" class="btn btn-sec" style="width:auto; padding:0 12px; display:none;" onclick="installPWA()">📲</button>
     </div>
 </div>
 
@@ -99,7 +111,6 @@
         <h2>Heft Meta-Daten
             <select id="heft-lock-btn" onchange="setHeftLevel(this.value)" style="width:auto;padding:3px 8px;font-size:0.65rem;background:#111;color:#fff;border:1px solid #444;border-radius:4px;">
                 <option value="free">🔓 Free</option>
-                <option value="bronze">🥉 Bronze</option>
                 <option value="silver">🥈 Silver</option>
                 <option value="gold">🥇 Gold</option>
             </select>
@@ -158,6 +169,7 @@
             <button class="btn btn-sec" style="flex:1;" onclick="exportHeft(currentHeftId)">💾 DOWNLOAD</button>
         </div>
         <button class="btn" style="background:var(--success); margin-bottom:10px;" onclick="pushMembers()">🚀 MEMBERS.MD → GITHUB</button>
+        <button class="btn btn-sec" style="margin-bottom:10px; border:1px solid #ff4444; color:#ff4444;" onclick="resetHeftToFree()">🔓 ALLES AUF FREE (dieses Heft)</button>
         <div id="push-status" style="display:none; margin-top:10px; padding:10px; border-radius:8px; font-size:0.75rem;"></div>
         <button class="btn btn-sec" style="margin-top:10px; background:var(--danger);" onclick="clearLocal()">RESET & BLIND SYNC</button>
     </div>
@@ -306,39 +318,72 @@
         if(!h || !h.seiten) { container.innerHTML = ''; return; }
 
         const levelSelect = (cur, onChange) => {
-            const opts = ['free','bronze','silver','gold'].map(l => {
-                const icon = l==='free'?'🔓':l==='bronze'?'🥉':l==='silver'?'🥈':'🥇';
+            const opts = ['free','silver','gold'].map(l => {
+                const icon = l==='free'?'🔓':l==='silver'?'🥈':'🥇';
                 return `<option value="${l}" ${cur===l?'selected':''}>${icon} ${l.charAt(0).toUpperCase()+l.slice(1)}</option>`;
             }).join('');
             const fn = onChange.replace('this.value', 'this.options[this.selectedIndex].value');
-            return `<select style="width:auto;padding:3px 6px;font-size:0.6rem;background:#111;color:#fff;border:1px solid #444;border-radius:4px;" onchange="${fn}">${opts}</select>`;
+            return `<select style="width:auto;padding:2px 4px;font-size:0.55rem;background:#111;color:#fff;border:1px solid #444;border-radius:4px;" onchange="${fn}">${opts}</select>`;
         };
 
         let html = "";
         h.seiten.forEach((seite, sIdx) => {
             const seiteCur = seite.members ? (seite.level || 'bronze') : 'free';
+            const sNr = seite.nummer || sIdx + 1;
+            const pCount = seite.panels ? seite.panels.length : 0;
+            const sIcon = seiteCur==='free'?'🔓':seiteCur==='bronze'?'🥉':seiteCur==='silver'?'🥈':'🥇';
+
             html += `
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
-                    <div style="color:var(--gold); font-size:0.7rem; font-weight:900;">SEITE ${seite.nummer || sIdx + 1}</div>
-                    ${levelSelect(seiteCur, `setSeiteLevel(${sIdx}, this.value)`)}
-                </div>`;
+                <div class="seite-header" onclick="toggleSeite(${sIdx})">
+                    <div style="display:flex;align-items:center;gap:8px;">
+                        <span style="color:var(--gold);font-size:0.7rem;font-weight:900;">S${sNr}</span>
+                        <span style="font-size:0.6rem;color:#555;">${pCount} Panels</span>
+                        <span style="font-size:0.65rem;">${sIcon}</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:6px;" onclick="event.stopPropagation()">
+                        ${levelSelect(seiteCur, `setSeiteLevel(${sIdx}, this.value)`)}
+                        <span id="seite-arrow-${sIdx}" style="color:#444;font-size:0.7rem;">▼</span>
+                    </div>
+                </div>
+                <div class="seite-panels" id="seite-panels-${sIdx}">`;
+
             seite.panels.forEach((p, pIdx) => {
                 const panelCur = p.level ? p.level : (p.members || p.bonus ? 'bronze' : 'free');
+                const fmt = p.format || (p.wide?'16:9':p.tall?'9:16':'1:1');
+                const fmtColor = {'16:9':'#4a9eff','1:1':'#d4af37','3:5':'#a855f7','9:16':'#ff6b35'}[fmt]||'#888';
+                const story = (p.story||'').substring(0,60) + ((p.story||'').length>60?'…':'');
+
+                const adIcon = p.werbung && p.werbung.bild ? '📢' : '📭';
+                const moIcon = p.makingOf ? '🎬' : '🎞️';
                 html += `
                     <div class="panel-row">
-                        <div class="panel-meta">
-                            P${pIdx + 1}
+                        <div style="display:flex;align-items:center;gap:6px;min-width:0;">
+                            <span style="color:var(--gold);font-weight:900;font-size:0.65rem;white-space:nowrap;">P${pIdx+1}</span>
+                            <span style="font-size:0.5rem;color:${fmtColor};font-weight:900;white-space:nowrap;">${fmt}</span>
                             ${levelSelect(panelCur, `setPanelLevel(${sIdx}, ${pIdx}, this.value)`)}
                         </div>
-                        <div style="font-size:0.65rem; color:#888;">
-                            <strong>S:</strong> ${p.story || '...'}<br>
-                            <strong>K:</strong> ${p.skript || '...'}
+                        <div class="panel-story-short" title="${(p.story||'').replace(/"/g,"'")}">
+                            ${story || '<span style="color:#333">–</span>'}
                         </div>
-                        <button class="btn btn-sec" style="padding:5px;" onclick="openPromptEngine('${currentHeftId}', ${sIdx}, ${pIdx})">🎨</button>
+                        <div style="display:flex;gap:3px;">
+                            <button class="btn btn-sec" style="padding:4px;font-size:0.7rem;" onclick="openPromptEngine('${currentHeftId}', ${sIdx}, ${pIdx})">🎨</button>
+                            <button class="btn btn-sec" style="padding:4px;font-size:0.7rem;" onclick="editAd(${sIdx}, ${pIdx})" title="Werbung">${adIcon}</button>
+                            <button class="btn btn-sec" style="padding:4px;font-size:0.7rem;" onclick="editMakingOf(${sIdx}, ${pIdx})" title="Making Of">${moIcon}</button>
+                        </div>
                     </div>`;
             });
+
+            html += `</div>`;
         });
         container.innerHTML = html;
+    }
+
+    function toggleSeite(sIdx) {
+        const panels = document.getElementById(`seite-panels-${sIdx}`);
+        const arrow  = document.getElementById(`seite-arrow-${sIdx}`);
+        const isOpen = panels.classList.contains('open');
+        panels.classList.toggle('open', !isOpen);
+        arrow.textContent = isOpen ? '▼' : '▲';
     }
 
     function setHeftLevel(val) {
@@ -472,17 +517,30 @@
         const seiten = [];
         let currentSeite = null;
         let currentPanel = null;
+        let currentAkt = '';
         let i = 0;
 
         while (i < lines.length) {
             const line = lines[i];
 
-            // Neue Seite: ## Seite N – Titel  ODER  ## AKT ...
-            const seiteMatch = line.match(/^##\s+Seite\s+(\d+)/);
+            // Akt-Zeile: ## AKT 1 – SETUP: ...
+            const aktMatch = line.match(/^##\s+AKT\s+(\d+)\s*[–-]\s*(.+)/);
+            if (aktMatch) {
+                currentAkt = `AKT ${aktMatch[1]} – ${aktMatch[2].replace(/\(.*\)/, '').trim()}`;
+                i++; continue;
+            }
+
+            // Neue Seite: ## Seite N – Titel
+            const seiteMatch = line.match(/^##\s+Seite\s+(\d+)(?:\s*[–-]\s*(.+))?/);
             if (seiteMatch) {
                 if (currentPanel && currentSeite) currentSeite.panels.push(currentPanel);
                 currentPanel = null;
-                currentSeite = { nummer: parseInt(seiteMatch[1]), panels: [] };
+                currentSeite = {
+                    nummer: parseInt(seiteMatch[1]),
+                    titel: seiteMatch[2] ? seiteMatch[2].trim() : '',
+                    akt: currentAkt || '',
+                    panels: []
+                };
                 seiten.push(currentSeite);
                 i++; continue;
             }
@@ -542,7 +600,7 @@
             heft: {
                 titel,
                 teaser,
-                released: true,
+                released: false,
                 cover: 'cover.jpg',
                 seiten,
                 coverStory: teaser
@@ -580,6 +638,24 @@
         h.teaser = document.getElementById('h-teaser').value;
         h.coverStory = h.teaser;
         saveLocal();
+    }
+
+    function resetHeftToFree() {
+        const h = hefte[currentHeftId];
+        if (!h) return;
+        // Heft-Level
+        h.members = false; delete h.level;
+        // Alle Seiten
+        if (h.seiten) h.seiten.forEach(s => {
+            s.members = false; delete s.level;
+            // Alle Panels
+            if (s.panels) s.panels.forEach(p => {
+                p.members = false; p.bonus = false; delete p.level;
+            });
+        });
+        saveLocal();
+        loadHeft(currentHeftId);
+        showStatus(`Heft ${currentHeftId} – alles auf Free gesetzt!`);
     }
 
     function exportHeft(id) {
@@ -746,7 +822,127 @@
         window.open(`prompt-engine.html?${params.toString()}`, '_blank');
     }
 
+    // --- PWA INSTALL ---
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        document.getElementById('pwa-install-btn').style.display = 'flex';
+    });
+    function installPWA() {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => {
+            deferredPrompt = null;
+            document.getElementById('pwa-install-btn').style.display = 'none';
+        });
+    }
+
+    // --- WERBUNG ---
+    let _adSIdx = null, _adPIdx = null;
+
+    function editAd(sIdx, pIdx) {
+        _adSIdx = sIdx; _adPIdx = pIdx;
+        const p = hefte[currentHeftId].seiten[sIdx].panels[pIdx];
+        document.getElementById('ad-bild').value = p.werbung?.bild || '';
+        document.getElementById('ad-link').value = p.werbung?.link || '';
+        document.getElementById('ad-alt').value  = p.werbung?.alt  || '';
+        const m = document.getElementById('ad-modal');
+        m.style.display = 'flex';
+    }
+
+    function saveAd() {
+        const p = hefte[currentHeftId].seiten[_adSIdx].panels[_adPIdx];
+        const bild = document.getElementById('ad-bild').value.trim();
+        const link = document.getElementById('ad-link').value.trim();
+        const alt  = document.getElementById('ad-alt').value.trim();
+        if (bild) p.werbung = { bild, link, alt };
+        else delete p.werbung;
+        saveLocal();
+        renderPreview(currentHeftId);
+        closeAdModal();
+        showStatus('Werbung gespeichert!');
+    }
+
+    function removeAd() {
+        const p = hefte[currentHeftId].seiten[_adSIdx].panels[_adPIdx];
+        delete p.werbung;
+        saveLocal();
+        renderPreview(currentHeftId);
+        closeAdModal();
+        showStatus('Werbung entfernt.');
+    }
+
+    function closeAdModal() {
+        document.getElementById('ad-modal').style.display = 'none';
+    }
+
+    // --- MAKING OF ---
+    let _moSIdx = null, _moPIdx = null;
+
+    function editMakingOf(sIdx, pIdx) {
+        _moSIdx = sIdx; _moPIdx = pIdx;
+        const p = hefte[currentHeftId].seiten[sIdx].panels[pIdx];
+        document.getElementById('mo-text').value = p.makingOf || '';
+        document.getElementById('mo-modal').style.display = 'flex';
+    }
+
+    function saveMakingOf() {
+        const p = hefte[currentHeftId].seiten[_moSIdx].panels[_moPIdx];
+        const txt = document.getElementById('mo-text').value.trim();
+        if (txt) p.makingOf = txt; else delete p.makingOf;
+        saveLocal();
+        renderPreview(currentHeftId);
+        closeMoModal();
+        showStatus('Making Of gespeichert!');
+    }
+
+    function removeMakingOf() {
+        const p = hefte[currentHeftId].seiten[_moSIdx].panels[_moPIdx];
+        delete p.makingOf;
+        saveLocal();
+        renderPreview(currentHeftId);
+        closeMoModal();
+        showStatus('Making Of entfernt.');
+    }
+
+    function closeMoModal() {
+        document.getElementById('mo-modal').style.display = 'none';
+    }
+
     window.onload = init;
 </script>
+<!-- Werbung Modal -->
+<div id="ad-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:3000;align-items:center;justify-content:center;">
+    <div style="background:#111;border:1px solid #333;border-radius:16px;padding:24px;width:90%;max-width:400px;">
+        <h3 style="color:var(--gold);margin:0 0 15px;font-size:0.9rem;text-transform:uppercase;letter-spacing:1px;">📢 Werbung für Panel</h3>
+        <label>Bilddatei (z.B. 24_1_P0.jpg)</label>
+        <input type="text" id="ad-bild" placeholder="24_1_P0.jpg" style="margin-bottom:10px;">
+        <label>Link (URL)</label>
+        <input type="text" id="ad-link" placeholder="https://..." style="margin-bottom:10px;">
+        <label>Beschreibung (alt)</label>
+        <input type="text" id="ad-alt" placeholder="Café Bar Bus Gandia" style="margin-bottom:15px;">
+        <div style="display:flex;gap:10px;">
+            <button class="btn" style="flex:1;" onclick="saveAd()">💾 SPEICHERN</button>
+            <button class="btn btn-sec" style="flex:1;" onclick="removeAd()">🗑 ENTFERNEN</button>
+            <button class="btn btn-sec" style="width:auto;padding:0 12px;" onclick="closeAdModal()">✕</button>
+        </div>
+    </div>
+</div>
+
+<!-- Making Of Modal -->
+<div id="mo-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:3000;align-items:center;justify-content:center;">
+    <div style="background:#111;border:1px solid #333;border-radius:16px;padding:24px;width:90%;max-width:400px;">
+        <h3 style="color:var(--gold);margin:0 0 15px;font-size:0.9rem;text-transform:uppercase;letter-spacing:1px;">🎬 Making Of – Panel</h3>
+        <label style="font-size:0.65rem;color:#888;">Text (Silver+ sieht das im Story Modal)</label>
+        <textarea id="mo-text" rows="6" placeholder="Dieser Shot wurde 3x gerendert. Das Licht war das Problem..." style="margin-top:5px;margin-bottom:15px;resize:vertical;"></textarea>
+        <div style="display:flex;gap:10px;">
+            <button class="btn" style="flex:1;" onclick="saveMakingOf()">💾 SPEICHERN</button>
+            <button class="btn btn-sec" style="flex:1;" onclick="removeMakingOf()">🗑 ENTFERNEN</button>
+            <button class="btn btn-sec" style="width:auto;padding:0 12px;" onclick="closeMoModal()">✕</button>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
