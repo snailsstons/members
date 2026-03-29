@@ -700,6 +700,21 @@
                         checkAndReplaceWithVideo(wrap, imgSrc, vidSrc);
                     }
                     content.appendChild(wrap);
+
+                    // Werbung nach Panel – nur für Bronze/Gäste
+                    if (p.werbung && p.werbung.bild && !hasLevel('silver')) {
+                        const adWrap = document.createElement('div');
+                        adWrap.className = 'panel-wrap panel-full-width';
+                        adWrap.style.cssText = 'margin-top:8px; border-top: 1px solid #222; padding-top:8px; cursor:pointer;';
+                        adWrap.onclick = () => window.open(p.werbung.link || '#', '_blank');
+                        adWrap.innerHTML = `
+                            <div style="font-size:0.45rem;color:#444;text-align:right;padding:0 4px 2px;letter-spacing:1px;text-transform:uppercase;">Anzeige</div>
+                            <img src="heft${HEFT_ID}/${p.werbung.bild}" 
+                                 alt="${p.werbung.alt || ''}" 
+                                 style="width:100%;height:auto;display:block;-webkit-user-drag:none;pointer-events:none;">
+                        `;
+                        content.appendChild(adWrap);
+                    }
                 });
                 
                 slide.appendChild(content);

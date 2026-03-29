@@ -353,6 +353,7 @@
                 const fmtColor = {'16:9':'#4a9eff','1:1':'#d4af37','3:5':'#a855f7','9:16':'#ff6b35'}[fmt]||'#888';
                 const story = (p.story||'').substring(0,60) + ((p.story||'').length>60?'…':'');
 
+                const adIcon = p.werbung && p.werbung.bild ? '📢' : '📭';
                 html += `
                     <div class="panel-row">
                         <div style="display:flex;align-items:center;gap:6px;min-width:0;">
@@ -363,7 +364,10 @@
                         <div class="panel-story-short" title="${(p.story||'').replace(/"/g,"'")}">
                             ${story || '<span style="color:#333">–</span>'}
                         </div>
-                        <button class="btn btn-sec" style="padding:4px;font-size:0.7rem;" onclick="openPromptEngine('${currentHeftId}', ${sIdx}, ${pIdx})">🎨</button>
+                        <div style="display:flex;gap:3px;">
+                            <button class="btn btn-sec" style="padding:4px;font-size:0.7rem;" onclick="openPromptEngine('${currentHeftId}', ${sIdx}, ${pIdx})">🎨</button>
+                            <button class="btn btn-sec" style="padding:4px;font-size:0.7rem;" onclick="editAd(${sIdx}, ${pIdx})" title="Werbung">${adIcon}</button>
+                        </div>
                     </div>`;
             });
 
@@ -819,7 +823,64 @@
         });
     }
 
+    // --- WERBUNG ---
+    let _adSIdx = null, _adPIdx = null;
+
+    function editAd(sIdx, pIdx) {
+        _adSIdx = sIdx; _adPIdx = pIdx;
+        const p = hefte[currentHeftId].seiten[sIdx].panels[pIdx];
+        document.getElementById('ad-bild').value = p.werbung?.bild || '';
+        document.getElementById('ad-link').value = p.werbung?.link || '';
+        document.getElementById('ad-alt').value  = p.werbung?.alt  || '';
+        const m = document.getElementById('ad-modal');
+        m.style.display = 'flex';
+    }
+
+    function saveAd() {
+        const p = hefte[currentHeftId].seiten[_adSIdx].panels[_adPIdx];
+        const bild = document.getElementById('ad-bild').value.trim();
+        const link = document.getElementById('ad-link').value.trim();
+        const alt  = document.getElementById('ad-alt').value.trim();
+        if (bild) p.werbung = { bild, link, alt };
+        else delete p.werbung;
+        saveLocal();
+        renderPreview(currentHeftId);
+        closeAdModal();
+        showStatus('Werbung gespeichert!');
+    }
+
+    function removeAd() {
+        const p = hefte[currentHeftId].seiten[_adSIdx].panels[_adPIdx];
+        delete p.werbung;
+        saveLocal();
+        renderPreview(currentHeftId);
+        closeAdModal();
+        showStatus('Werbung entfernt.');
+    }
+
+    function closeAdModal() {
+        document.getElementById('ad-modal').style.display = 'none';
+    }
+
     window.onload = init;
 </script>
+<!-- Werbung Modal -->
+<div id="ad-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:3000;align-items:center;justify-content:center;">
+    <div style="background:#111;border:1px solid #333;border-radius:16px;padding:24px;width:90%;max-width:400px;">
+        <h3 style="color:var(--gold);margin:0 0 15px;font-size:0.9rem;text-transform:uppercase;letter-spacing:1px;">📢 Werbung für Panel</h3>
+        <label>Bilddatei (z.B. 24_1_P0.jpg)</label>
+        <input type="text" id="ad-bild" placeholder="24_1_P0.jpg" style="margin-bottom:10px;">
+        <label>Link (URL)</label>
+        <input type="text" id="ad-link" placeholder="https://..." style="margin-bottom:10px;">
+        <label>Beschreibung (alt)</label>
+        <input type="text" id="ad-alt" placeholder="Café Bar Bus Gandia" style="margin-bottom:15px;">
+        <div style="display:flex;gap:10px;">
+            <button class="btn" style="flex:1;" onclick="saveAd()">💾 SPEICHERN</button>
+            <button class="btn btn-sec" style="flex:1;" onclick="removeAd()">🗑 ENTFERNEN</button>
+            <button class="btn btn-sec" style="width:auto;padding:0 12px;" onclick="closeAdModal()">✕</button>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
