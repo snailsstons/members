@@ -354,6 +354,7 @@
                 const story = (p.story||'').substring(0,60) + ((p.story||'').length>60?'…':'');
 
                 const adIcon = p.werbung && p.werbung.bild ? '📢' : '📭';
+                const moIcon = p.makingOf ? '🎬' : '🎞️';
                 html += `
                     <div class="panel-row">
                         <div style="display:flex;align-items:center;gap:6px;min-width:0;">
@@ -367,6 +368,7 @@
                         <div style="display:flex;gap:3px;">
                             <button class="btn btn-sec" style="padding:4px;font-size:0.7rem;" onclick="openPromptEngine('${currentHeftId}', ${sIdx}, ${pIdx})">🎨</button>
                             <button class="btn btn-sec" style="padding:4px;font-size:0.7rem;" onclick="editAd(${sIdx}, ${pIdx})" title="Werbung">${adIcon}</button>
+                            <button class="btn btn-sec" style="padding:4px;font-size:0.7rem;" onclick="editMakingOf(${sIdx}, ${pIdx})" title="Making Of">${moIcon}</button>
                         </div>
                     </div>`;
             });
@@ -862,6 +864,39 @@
         document.getElementById('ad-modal').style.display = 'none';
     }
 
+    // --- MAKING OF ---
+    let _moSIdx = null, _moPIdx = null;
+
+    function editMakingOf(sIdx, pIdx) {
+        _moSIdx = sIdx; _moPIdx = pIdx;
+        const p = hefte[currentHeftId].seiten[sIdx].panels[pIdx];
+        document.getElementById('mo-text').value = p.makingOf || '';
+        document.getElementById('mo-modal').style.display = 'flex';
+    }
+
+    function saveMakingOf() {
+        const p = hefte[currentHeftId].seiten[_moSIdx].panels[_moPIdx];
+        const txt = document.getElementById('mo-text').value.trim();
+        if (txt) p.makingOf = txt; else delete p.makingOf;
+        saveLocal();
+        renderPreview(currentHeftId);
+        closeMoModal();
+        showStatus('Making Of gespeichert!');
+    }
+
+    function removeMakingOf() {
+        const p = hefte[currentHeftId].seiten[_moSIdx].panels[_moPIdx];
+        delete p.makingOf;
+        saveLocal();
+        renderPreview(currentHeftId);
+        closeMoModal();
+        showStatus('Making Of entfernt.');
+    }
+
+    function closeMoModal() {
+        document.getElementById('mo-modal').style.display = 'none';
+    }
+
     window.onload = init;
 </script>
 <!-- Werbung Modal -->
@@ -878,6 +913,20 @@
             <button class="btn" style="flex:1;" onclick="saveAd()">💾 SPEICHERN</button>
             <button class="btn btn-sec" style="flex:1;" onclick="removeAd()">🗑 ENTFERNEN</button>
             <button class="btn btn-sec" style="width:auto;padding:0 12px;" onclick="closeAdModal()">✕</button>
+        </div>
+    </div>
+</div>
+
+<!-- Making Of Modal -->
+<div id="mo-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:3000;align-items:center;justify-content:center;">
+    <div style="background:#111;border:1px solid #333;border-radius:16px;padding:24px;width:90%;max-width:400px;">
+        <h3 style="color:var(--gold);margin:0 0 15px;font-size:0.9rem;text-transform:uppercase;letter-spacing:1px;">🎬 Making Of – Panel</h3>
+        <label style="font-size:0.65rem;color:#888;">Text (Silver+ sieht das im Story Modal)</label>
+        <textarea id="mo-text" rows="6" placeholder="Dieser Shot wurde 3x gerendert. Das Licht war das Problem..." style="margin-top:5px;margin-bottom:15px;resize:vertical;"></textarea>
+        <div style="display:flex;gap:10px;">
+            <button class="btn" style="flex:1;" onclick="saveMakingOf()">💾 SPEICHERN</button>
+            <button class="btn btn-sec" style="flex:1;" onclick="removeMakingOf()">🗑 ENTFERNEN</button>
+            <button class="btn btn-sec" style="width:auto;padding:0 12px;" onclick="closeMoModal()">✕</button>
         </div>
     </div>
 </div>
