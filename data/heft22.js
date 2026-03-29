@@ -13,7 +13,9 @@ hefte["22"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_1_P2.jpg",
@@ -23,7 +25,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_1_P3.jpg",
@@ -33,7 +37,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_1_P4.jpg",
@@ -43,9 +49,12 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 2,
@@ -58,7 +67,9 @@ hefte["22"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_2_P2.jpg",
@@ -68,7 +79,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_2_P3.jpg",
@@ -78,7 +91,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_2_P4.jpg",
@@ -88,9 +103,12 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 3,
@@ -103,7 +121,9 @@ hefte["22"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_3_P2.jpg",
@@ -113,7 +133,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_3_P3.jpg",
@@ -123,7 +145,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_3_P4.jpg",
@@ -133,9 +157,12 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 4,
@@ -148,7 +175,9 @@ hefte["22"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_4_P2.jpg",
@@ -158,7 +187,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_4_P3.jpg",
@@ -168,7 +199,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_4_P4.jpg",
@@ -178,9 +211,12 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": true,
-          "format": "9:16"
+          "format": "9:16",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 5,
@@ -193,7 +229,9 @@ hefte["22"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_5_P2.jpg",
@@ -203,7 +241,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_5_P3.jpg",
@@ -213,7 +253,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_5_P4.jpg",
@@ -223,9 +265,12 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 6,
@@ -238,7 +283,9 @@ hefte["22"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_6_P2.jpg",
@@ -248,7 +295,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_6_P3.jpg",
@@ -258,7 +307,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_6_P4.jpg",
@@ -268,9 +319,12 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": true,
-          "format": "9:16"
+          "format": "9:16",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 7,
@@ -283,7 +337,9 @@ hefte["22"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_7_P2.jpg",
@@ -293,7 +349,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_7_P3.jpg",
@@ -303,7 +361,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_7_P4.jpg",
@@ -313,9 +373,12 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": true,
-          "format": "9:16"
+          "format": "9:16",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 8,
@@ -328,7 +391,9 @@ hefte["22"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_8_P2.jpg",
@@ -338,7 +403,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_8_P3.jpg",
@@ -348,7 +415,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_8_P4.jpg",
@@ -358,9 +427,12 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 9,
@@ -373,7 +445,9 @@ hefte["22"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_9_P2.jpg",
@@ -383,7 +457,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_9_P3.jpg",
@@ -393,7 +469,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_9_P4.jpg",
@@ -403,9 +481,12 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": true,
-          "format": "9:16"
+          "format": "9:16",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 10,
@@ -418,7 +499,9 @@ hefte["22"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_10_P2.jpg",
@@ -428,7 +511,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_10_P3.jpg",
@@ -438,7 +523,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_10_P4.jpg",
@@ -448,9 +535,12 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 11,
@@ -463,7 +553,9 @@ hefte["22"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_11_P2.jpg",
@@ -473,7 +565,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_11_P3.jpg",
@@ -483,7 +577,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_11_P4.jpg",
@@ -493,9 +589,12 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": true,
-          "format": "9:16"
+          "format": "9:16",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 12,
@@ -508,7 +607,9 @@ hefte["22"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_12_P2.jpg",
@@ -518,7 +619,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_12_P3.jpg",
@@ -528,7 +631,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_12_P4.jpg",
@@ -538,9 +643,12 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 13,
@@ -553,7 +661,9 @@ hefte["22"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_13_P2.jpg",
@@ -563,7 +673,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_13_P3.jpg",
@@ -573,7 +685,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_13_P4.jpg",
@@ -583,9 +697,12 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": true,
-          "format": "9:16"
+          "format": "9:16",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 14,
@@ -598,7 +715,9 @@ hefte["22"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_14_P2.jpg",
@@ -608,7 +727,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_14_P3.jpg",
@@ -618,7 +739,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_14_P4.jpg",
@@ -628,9 +751,12 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 15,
@@ -643,7 +769,9 @@ hefte["22"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_15_P2.jpg",
@@ -653,7 +781,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_15_P3.jpg",
@@ -663,7 +793,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_15_P4.jpg",
@@ -673,9 +805,12 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 16,
@@ -688,7 +823,9 @@ hefte["22"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_16_P2.jpg",
@@ -698,7 +835,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_16_P3.jpg",
@@ -708,7 +847,9 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "22_16_P4.jpg",
@@ -718,10 +859,14 @@ hefte["22"] = {
           "caption": "",
           "wide": false,
           "tall": true,
-          "format": "9:16"
+          "format": "9:16",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     }
   ],
-  "coverStory": "Hoch über der Stadt thront eine tausendjährige Festung – der Wächter von Gandia. Felix will die Mauern erklimmen, Archie erzählt von maurischen Fürsten und spanischen Königen, Stella sucht den perfekten Aussichtspunkt – und Luna findet die Stille auf dem Gipfel. Aber der Weg dorthin ist steiler als gedacht."
+  "coverStory": "Hoch über der Stadt thront eine tausendjährige Festung – der Wächter von Gandia. Felix will die Mauern erklimmen, Archie erzählt von maurischen Fürsten und spanischen Königen, Stella sucht den perfekten Aussichtspunkt – und Luna findet die Stille auf dem Gipfel. Aber der Weg dorthin ist steiler als gedacht.",
+  "members": false
 };
