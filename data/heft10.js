@@ -420,5 +420,5 @@ hefte["10"] = {
       "nummer": 7
     }
   ],
-  "members": true
+  "members": false
 };
