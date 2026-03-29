@@ -471,5 +471,6 @@ hefte["1"] = {
   ],
   "teaser": "Stadttour mit Schnecken: Felix scannt, Stella glänzt, Archie doziert, Luna schweigt – und Salome lauert im Hintergrund. Gandia deluxe. 🐌📱",
   "coverStory": "Telegram-Gruppe gelöscht -> Shock -> Archie schlägt Patreon vor -> Felix baut Pappschild -> Luna hatte neue Gruppe bereits vor 3 Tagen -> Alle joinen -> Luna öffnet Augen. 🐌📱",
-  "members": false
+  "members": true,
+  "level": "gold"
 };
