@@ -1,11 +1,13 @@
 hefte["24"] = {
   "titel": "Die Flotte des Polit",
   "teaser": "Im Hafen von Gandia versteckt sich eine Schatzkammer aus Holz und Leidenschaft – ein Museum voller handgebauter Schiffe. Felix will jedes Modell fotografieren, Archie doziert über die Geschichte des Hafens, Stella findet die Ästhetik der alten Schiffe zeitlos – und Luna spürt die Hingabe eines Mannes, der hier sein Lebenswerk schuf. Am Ende, fast unbemerkt, ein Blick in die Ferne.",
-  "released": false,
+  "released": true,
   "cover": "cover.jpg",
   "seiten": [
     {
       "nummer": 1,
+      "titel": "Im Café",
+      "akt": "AKT 1 – SETUP: Ein Zufallsfund",
       "panels": [
         {
           "bild": "24_1_P1.jpg",
@@ -51,6 +53,8 @@ hefte["24"] = {
     },
     {
       "nummer": 2,
+      "titel": "Der Weg zum Hafen",
+      "akt": "AKT 1 – SETUP: Ein Zufallsfund",
       "panels": [
         {
           "bild": "24_2_P1.jpg",
@@ -96,6 +100,8 @@ hefte["24"] = {
     },
     {
       "nummer": 3,
+      "titel": "Tinglado 15",
+      "akt": "AKT 1 – SETUP: Ein Zufallsfund",
       "panels": [
         {
           "bild": "24_3_P1.jpg",
@@ -137,12 +143,12 @@ hefte["24"] = {
           "skript": "**DIALOG** Stella: „Heute sind wir nur Gäste.“ – *Kamera hält auf die offene Tür.*",
           "caption": ""
         }
-      ],
-      "members": true,
-      "level": "silver"
+      ]
     },
     {
       "nummer": 4,
+      "titel": "Eintritt",
+      "akt": "AKT 1 – SETUP: Ein Zufallsfund",
       "panels": [
         {
           "bild": "24_4_P1.jpg",
@@ -184,12 +190,12 @@ hefte["24"] = {
           "skript": "**BILDTEXT:** (kein Dialog) – *Kamera hält auf die filigranen Modelle.*",
           "caption": ""
         }
-      ],
-      "members": true,
-      "level": "silver"
+      ]
     },
     {
       "nummer": 5,
+      "titel": "Die antiken Schiffe",
+      "akt": "AKT 2 – KONFRONTATION: Eine Welt aus Holz",
       "panels": [
         {
           "bild": "24_5_P1.jpg",
@@ -231,12 +237,12 @@ hefte["24"] = {
           "skript": "**BILDTEXT:** (kein Dialog) – *Kamera hält auf das detailreiche Modell.*",
           "caption": ""
         }
-      ],
-      "members": true,
-      "level": "silver"
+      ]
     },
     {
       "nummer": 6,
+      "titel": "Die Schiffe von Trafalgar",
+      "akt": "AKT 2 – KONFRONTATION: Eine Welt aus Holz",
       "panels": [
         {
           "bild": "24_6_P1.jpg",
@@ -278,12 +284,12 @@ hefte["24"] = {
           "skript": "**DIALOG** Felix: „Die haben echte Kanonen! Na ja, kleine.“ – *Kamera hält auf die filigranen Geschütze.*",
           "caption": ""
         }
-      ],
-      "members": true,
-      "level": "silver"
+      ]
     },
     {
       "nummer": 7,
+      "titel": "Fischerboote aus dem Grau",
+      "akt": "AKT 2 – KONFRONTATION: Eine Welt aus Holz",
       "panels": [
         {
           "bild": "24_7_P1.jpg",
@@ -325,12 +331,12 @@ hefte["24"] = {
           "skript": "**BILDTEXT:** (kein Dialog) – *Kamera hält auf die Liebe zum Detail.*",
           "caption": ""
         }
-      ],
-      "members": true,
-      "level": "silver"
+      ]
     },
     {
       "nummer": 8,
+      "titel": "Die Werkstatt",
+      "akt": "AKT 2 – KONFRONTATION: Eine Welt aus Holz",
       "panels": [
         {
           "bild": "24_8_P1.jpg",
@@ -372,12 +378,12 @@ hefte["24"] = {
           "skript": "**DIALOG** Felix: „Das gehört nicht ins Handy. Das gehört ins Herz.“ – *Kamera hält auf sein ernstes Gesicht.*",
           "caption": ""
         }
-      ],
-      "members": true,
-      "level": "silver"
+      ]
     },
     {
       "nummer": 9,
+      "titel": "Die große Yacht",
+      "akt": "AKT 2 – KONFRONTATION: Eine Welt aus Holz",
       "panels": [
         {
           "bild": "24_9_P1.jpg",
@@ -419,12 +425,12 @@ hefte["24"] = {
           "skript": "**BILDTEXT:** (kein Dialog) – *Kamera hält auf das riesige Modell.*",
           "caption": ""
         }
-      ],
-      "members": true,
-      "level": "silver"
+      ]
     },
     {
       "nummer": 10,
+      "titel": "Die Geschichten",
+      "akt": "AKT 2 – KONFRONTATION: Eine Welt aus Holz",
       "panels": [
         {
           "bild": "24_10_P1.jpg",
@@ -466,12 +472,12 @@ hefte["24"] = {
           "skript": "**DIALOG** Archie: „Nichts. Aber er baute ihre Schiffe nach. Aus Liebe zur Geschichte.“ – *Kamera hält auf Archies nachdenkliches Gesicht.*",
           "caption": ""
         }
-      ],
-      "members": true,
-      "level": "silver"
+      ]
     },
     {
       "nummer": 11,
+      "titel": "Lunas Platz",
+      "akt": "AKT 2 – KONFRONTATION: Eine Welt aus Holz",
       "panels": [
         {
           "bild": "24_11_P1.jpg",
@@ -513,12 +519,12 @@ hefte["24"] = {
           "skript": "**BILDTEXT:** (kein Dialog) – *Kamera hält auf Lunas friedliches Gesicht.*",
           "caption": ""
         }
-      ],
-      "members": true,
-      "level": "silver"
+      ]
     },
     {
       "nummer": 12,
+      "titel": "Der letzte Raum",
+      "akt": "AKT 3 – AUFLÖSUNG: Abschied und ein Blick in die Ferne",
       "panels": [
         {
           "bild": "24_12_P1.jpg",
@@ -560,12 +566,12 @@ hefte["24"] = {
           "skript": "**DIALOG** Archie: „Polit ist nicht tot. Er lebt in seinen Schiffen.“ – *Kamera hält auf Archies ernstes, fast melancholisches Gesicht.*",
           "caption": ""
         }
-      ],
-      "members": true,
-      "level": "silver"
+      ]
     },
     {
       "nummer": 13,
+      "titel": "Der Blick ins Freie",
+      "akt": "AKT 3 – AUFLÖSUNG: Abschied und ein Blick in die Ferne",
       "panels": [
         {
           "bild": "24_13_P1.jpg",
@@ -607,12 +613,12 @@ hefte["24"] = {
           "skript": "**BILDTEXT:** (Archie denkt:) „Salome. Ob sie noch tanzt?“ – *Kamera hält kurz auf sein nachdenkliches Gesicht, dann schweift er ab.*",
           "caption": ""
         }
-      ],
-      "members": true,
-      "level": "silver"
+      ]
     },
     {
       "nummer": 14,
+      "titel": "Das Geheimnis am Kai",
+      "akt": "AKT 3 – AUFLÖSUNG: Abschied und ein Blick in die Ferne",
       "panels": [
         {
           "bild": "24_14_P1.jpg",
@@ -654,12 +660,12 @@ hefte["24"] = {
           "skript": "**BILDTEXT:** (Stella denkt:) „War da jemand?“ – *Kamera hält auf den leeren Kai.*",
           "caption": ""
         }
-      ],
-      "members": true,
-      "level": "silver"
+      ]
     },
     {
       "nummer": 15,
+      "titel": "Die Rückkehr ins Café",
+      "akt": "AKT 3 – AUFLÖSUNG: Abschied und ein Blick in die Ferne",
       "panels": [
         {
           "bild": "24_15_P1.jpg",
@@ -701,12 +707,12 @@ hefte["24"] = {
           "skript": "**DIALOG** Archie: „Ein Tag wie ein Schatz.“ – *Kamera hält auf sein nachdenkliches Gesicht.*",
           "caption": ""
         }
-      ],
-      "members": true,
-      "level": "silver"
+      ]
     },
     {
       "nummer": 16,
+      "titel": "Ende",
+      "akt": "AKT 3 – AUFLÖSUNG: Abschied und ein Blick in die Ferne",
       "panels": [
         {
           "bild": "24_16_P1.jpg",
@@ -748,9 +754,7 @@ hefte["24"] = {
           "skript": "**DIALOG** Luna (aus dem Off): „…bis zum nächsten Mal.“",
           "caption": ""
         }
-      ],
-      "members": true,
-      "level": "silver"
+      ]
     }
   ],
   "coverStory": "Im Hafen von Gandia versteckt sich eine Schatzkammer aus Holz und Leidenschaft – ein Museum voller handgebauter Schiffe. Felix will jedes Modell fotografieren, Archie doziert über die Geschichte des Hafens, Stella findet die Ästhetik der alten Schiffe zeitlos – und Luna spürt die Hingabe eines Mannes, der hier sein Lebenswerk schuf. Am Ende, fast unbemerkt, ein Blick in die Ferne."
