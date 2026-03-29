@@ -169,6 +169,7 @@
             <button class="btn btn-sec" style="flex:1;" onclick="exportHeft(currentHeftId)">💾 DOWNLOAD</button>
         </div>
         <button class="btn" style="background:var(--success); margin-bottom:10px;" onclick="pushMembers()">🚀 MEMBERS.MD → GITHUB</button>
+        <button class="btn btn-sec" style="margin-bottom:10px; border:1px solid #ff4444; color:#ff4444;" onclick="resetHeftToFree()">🔓 ALLES AUF FREE (dieses Heft)</button>
         <div id="push-status" style="display:none; margin-top:10px; padding:10px; border-radius:8px; font-size:0.75rem;"></div>
         <button class="btn btn-sec" style="margin-top:10px; background:var(--danger);" onclick="clearLocal()">RESET & BLIND SYNC</button>
     </div>
@@ -618,6 +619,24 @@
         h.teaser = document.getElementById('h-teaser').value;
         h.coverStory = h.teaser;
         saveLocal();
+    }
+
+    function resetHeftToFree() {
+        const h = hefte[currentHeftId];
+        if (!h) return;
+        // Heft-Level
+        h.members = false; delete h.level;
+        // Alle Seiten
+        if (h.seiten) h.seiten.forEach(s => {
+            s.members = false; delete s.level;
+            // Alle Panels
+            if (s.panels) s.panels.forEach(p => {
+                p.members = false; p.bonus = false; delete p.level;
+            });
+        });
+        saveLocal();
+        loadHeft(currentHeftId);
+        showStatus(`Heft ${currentHeftId} – alles auf Free gesetzt!`);
     }
 
     function exportHeft(id) {
