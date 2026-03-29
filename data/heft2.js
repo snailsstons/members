@@ -472,5 +472,6 @@ hefte["2"] = {
   ],
   "teaser": "Zeit für Vorstellungen! Die SnailsStons brechen die vierte Wand. Felix sucht Mitstreiter, Stella sucht Perfektion, Archie sucht den nächsten Martini und Luna sucht… gar nicht. Und wer ist die Silhouette im Hintergrund? 🐌📧",
   "coverStory": "Zeit für Vorstellungen! Die SnailsStons brechen die vierte Wand. Felix sucht Mitstreiter, Stella sucht Perfektion, Archie sucht den nächsten Martini und Luna sucht… gar nicht. Und wer ist die Silhouette im Hintergrund? 🐌📧",
-  "members": false
+  "members": true,
+  "level": "gold"
 };
