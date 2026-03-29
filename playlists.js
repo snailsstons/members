@@ -6,7 +6,8 @@ window.playlistMap = [
       19,
       20,
       16,
-      17
+      17,
+      25
     ]
   },
   {
@@ -24,13 +25,14 @@ window.playlistMap = [
   {
     "titel": "🖇️ Experimente, Schmierheft",
     "hefte": [
-      0,
-      25
+      0
     ]
   },
   {
     "titel": "⭐ Members Only",
-    "hefte": [],
+    "hefte": [
+      0
+    ],
     "membersOnly": true
   }
 ];
