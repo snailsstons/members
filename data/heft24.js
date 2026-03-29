@@ -55,7 +55,7 @@ hefte["24"] = {
           "members": false,
           "bonus": false,
           "werbung": {
-            "bild": "24_1_P0.jpg",
+            "bild": "24_2_P0.jpg",
             "link": "https://despistecafe.es/cafeteria/estacion-de-gandia/",
             "alt": "Cafe am Busbahnhof Gandía"
           }
