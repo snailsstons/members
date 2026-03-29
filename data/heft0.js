@@ -43,7 +43,8 @@ hefte["0"] = {
             "bild": "0_1_P0.jpg",
             "link": "https://despistecafe.es/cafeteria/estacion-de-gandia/",
             "alt": "Cafe am Busbahnhof Gandía"
-          }
+          },
+          "makingOf": "Die Aussichten auf das was Euch Mrs. Drag noch zeigen wird, wird cool ..."
         }
       ],
       "members": false
