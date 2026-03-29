@@ -16,7 +16,9 @@ hefte["21"] = {
           "locDna": "Peñíscola, Costa del Azahar. Blick von der Landseite. Ein gewaltiger Felsen ragt 64 Meter über das Mittelmeer, gekrönt von der Festung `[ASSET: PENISCOLA_CASTLE_V1]`. Der Isthmus verbindet den Felsen mit dem Festland. Morgensonne taucht den hellen Stein in warmes Gold, das Meer glitzert türkis.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_1_P2.jpg",
@@ -25,7 +27,9 @@ hefte["21"] = {
           "locDna": "Archie gleitet neben Felix. Sein Blick wandert prüfend über die massiven Mauern.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_1_P3.jpg",
@@ -34,7 +38,9 @@ hefte["21"] = {
           "locDna": "Nahaufnahme Stella. Sie mustert den Kontrast zwischen dem rauen Fels und der geometrischen Festung.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_1_P4.jpg",
@@ -43,9 +49,12 @@ hefte["21"] = {
           "locDna": "Dramatische vertikale Perspektive vom Ufer zur Burg. Die vier Schnecken wirken wie winzige Entdecker vor der uneinnehmbaren Festung, die über ihnen in den blauen Himmel ragt.",
           "wide": false,
           "tall": true,
-          "format": "9:16"
+          "format": "9:16",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 2,
@@ -57,7 +66,9 @@ hefte["21"] = {
           "locDna": "Der Eingang zur Altstadt – das **Portal del Fosc**. Ein schmaler Torbogen aus hellem Kalkstein. Das Pflaster ist glattgetreten von Jahrhunderten.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_2_P2.jpg",
@@ -66,7 +77,9 @@ hefte["21"] = {
           "locDna": "Nahaufnahme Archie. Seine Antenne tastet eine feine Steinmetz-Markierung am Bogen ab.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_2_P3.jpg",
@@ -75,7 +88,9 @@ hefte["21"] = {
           "locDna": "Felix reckt den Hals, sucht die Mauern nach Brandspuren von Drachenfeuer ab.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_2_P4.jpg",
@@ -84,9 +99,12 @@ hefte["21"] = {
           "locDna": "Stella gleitet elegant an ihm vorbei, ihr Mesh-Harness blitzt kurz auf.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 3,
@@ -98,7 +116,9 @@ hefte["21"] = {
           "locDna": "Eine enge Gasse der Altstadt. Weiße Fassaden mit blauen Fensterläden. Im Hintergrund ragen die massiven Quader der Burgmauer auf.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_3_P2.jpg",
@@ -107,7 +127,9 @@ hefte["21"] = {
           "locDna": "Archie verharrt vor einer kleinen Gedenktafel an einer Hauswand.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_3_P3.jpg",
@@ -116,7 +138,9 @@ hefte["21"] = {
           "locDna": "Felix richtet sich maximal auf, versucht eine majestätische Haltung einzunehmen.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_3_P4.jpg",
@@ -125,9 +149,12 @@ hefte["21"] = {
           "locDna": "Nahaufnahme Stella. Sie rollt sichtlich mit den Augen.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 4,
@@ -139,7 +166,9 @@ hefte["21"] = {
           "locDna": "Der **Plaza de Armas**. Ein offener Platz direkt vor der Burgmauer. Kanonenrohre aus Bronze richten ihren stummen Blick über die Zinnen aufs Meer.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_4_P2.jpg",
@@ -148,7 +177,9 @@ hefte["21"] = {
           "locDna": "Archie deutet mit einer Antenne auf den Boden des Platzes.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_4_P3.jpg",
@@ -157,7 +188,9 @@ hefte["21"] = {
           "locDna": "Felix betrachtet die massiven Kanonenrohre.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_4_P4.jpg",
@@ -166,9 +199,12 @@ hefte["21"] = {
           "locDna": "Weite Totale des Platzes. Die vier Schnecken wirken winzig vor der schieren Masse der Festungsmauern.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 5,
@@ -180,7 +216,9 @@ hefte["21"] = {
           "locDna": "Die steile Zugangsrampe zur Burg. Helle Steinquader, die Sonne brennt jetzt unbarmherzig vom Himmel.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_5_P2.jpg",
@@ -189,7 +227,9 @@ hefte["21"] = {
           "locDna": "Felix stoppt, seine Basis zittert leicht vor Erschöpfung.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_5_P3.jpg",
@@ -198,7 +238,9 @@ hefte["21"] = {
           "locDna": "Archie gleitet gleichmäßig an ihm vorbei, das Martini-Glas fast unbewegt.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_5_P4.jpg",
@@ -207,9 +249,12 @@ hefte["21"] = {
           "locDna": "Stella gleitet neben Felix, ihr Harness reflektiert das grelle Sonnenlicht.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 6,
@@ -221,7 +266,9 @@ hefte["21"] = {
           "locDna": "Das Haupttor der Burg. Mächtige Rundbögen, eisenbeschlagenes Holz. Über dem Tor das verwitterte Wappen des Templerordens.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_6_P2.jpg",
@@ -230,7 +277,9 @@ hefte["21"] = {
           "locDna": "Archie nähert sich dem Mauerwerk, berührt den Stein fast zärtlich.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_6_P3.jpg",
@@ -239,7 +288,9 @@ hefte["21"] = {
           "locDna": "Felix blickt zu dem massiven Fallgitter nach oben.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_6_P4.jpg",
@@ -248,9 +299,12 @@ hefte["21"] = {
           "locDna": "Archie blickt zum verblassten Wappen.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 7,
@@ -262,7 +316,9 @@ hefte["21"] = {
           "locDna": "Der **Parque de Artillería**. Ein herrlicher Garten-Hof mit Kanonen und Palmen direkt an den Außenmauern.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_7_P2.jpg",
@@ -271,7 +327,9 @@ hefte["21"] = {
           "locDna": "Felix reckt sich, um das kalte Metall der Kanone zu erreichen.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_7_P3.jpg",
@@ -280,7 +338,9 @@ hefte["21"] = {
           "locDna": "Archie blickt über die Zinnen hinaus auf die Weite des Meeres.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_7_P4.jpg",
@@ -289,9 +349,12 @@ hefte["21"] = {
           "locDna": "Blick vom Hof auf die türkisblaue Unendlichkeit des Meeres. Die vier Schnecken als schwarze Silhouetten vor der hellen Weite.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 8,
@@ -303,7 +366,9 @@ hefte["21"] = {
           "locDna": "Im Inneren der Burg. Gewölbte Räume aus nacktem Stein. Hohe Fensteröffnungen bieten einen gerahmten Blick aufs Meer.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_8_P2.jpg",
@@ -312,7 +377,9 @@ hefte["21"] = {
           "locDna": "Nahaufnahme Archie. Das Licht des Fensters fällt auf seinen Strohhut.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_8_P3.jpg",
@@ -321,7 +388,9 @@ hefte["21"] = {
           "locDna": "Felix haftet flach auf einer Steinbank, reckt den Hals zum Fenster.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_8_P4.jpg",
@@ -330,9 +399,12 @@ hefte["21"] = {
           "locDna": "Stella betrachtet die perfekte Symmetrie des Gewölbes.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 9,
@@ -344,7 +416,9 @@ hefte["21"] = {
           "locDna": "Der **Faro de Peñíscola**. Ein weißer, eleganter Turm am äußersten Rand der Klippen `[ASSET: PENISCOLA_LIGHTHOUSE_V1]`. Tief unter ihnen brandet das Meer gegen den Fels.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_9_P2.jpg",
@@ -353,7 +427,9 @@ hefte["21"] = {
           "locDna": "Archie blickt zum Turm empor.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_9_P3.jpg",
@@ -362,7 +438,9 @@ hefte["21"] = {
           "locDna": "Stella mustert die weiße Oberfläche des Turms.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_9_P4.jpg",
@@ -371,9 +449,12 @@ hefte["21"] = {
           "locDna": "Gewaltiger vertikaler Blick vom Fuß des Leuchtturms hinunter zur brandenden Gischt und hinauf zum Licht. Die Schnecken wirken winzig zwischen Technik und Natur.",
           "wide": false,
           "tall": true,
-          "format": "9:16"
+          "format": "9:16",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 10,
@@ -385,7 +466,9 @@ hefte["21"] = {
           "locDna": "**El Bufador**. Eine natürliche Felsspalte im Fundament der Stadt. Wenn Wellen hineinschlagen, schießt Gischt wie Atem aus der Tiefe nach oben.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_10_P2.jpg",
@@ -394,7 +477,9 @@ hefte["21"] = {
           "locDna": "Eine Gischtfontäne schießt empor und benetzt Felix' Gesicht.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_10_P3.jpg",
@@ -403,7 +488,9 @@ hefte["21"] = {
           "locDna": "Archie lässt sich von den Wassertropfen nicht beirren.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_10_P4.jpg",
@@ -412,9 +499,12 @@ hefte["21"] = {
           "locDna": "Stella rückt ihr Harness zurecht, das von der Gischt glänzt.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 11,
@@ -426,7 +516,9 @@ hefte["21"] = {
           "locDna": "Eine kleine, windgeschützte Nische in der äußeren Festungsmauer. Freier Blick auf den Horizont.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_11_P2.jpg",
@@ -435,7 +527,9 @@ hefte["21"] = {
           "locDna": "Felix hält einen Moment inne und haftet sich schweigend neben sie.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_11_P3.jpg",
@@ -444,7 +538,9 @@ hefte["21"] = {
           "locDna": "Stella blickt über die Zinnen. Ihr Blick wird weich.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_11_P4.jpg",
@@ -453,9 +549,12 @@ hefte["21"] = {
           "locDna": "Nahaufnahme Luna. Sie öffnet für einen Wimpernschlag ein Auge und schenkt den anderen ein winziges Lächeln.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 12,
@@ -467,7 +566,9 @@ hefte["21"] = {
           "locDna": "Die Burgmauer in der Goldenen Stunde. Die Stadt unter ihnen leuchtet honigfarben.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_12_P2.jpg",
@@ -476,7 +577,9 @@ hefte["21"] = {
           "locDna": "Felix aktiviert sein Handy für ein letztes Panorama-Foto.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_12_P3.jpg",
@@ -485,7 +588,9 @@ hefte["21"] = {
           "locDna": "Stella blickt zu ihm. Ihr Harness schimmert orangefarben.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_12_P4.jpg",
@@ -494,9 +599,12 @@ hefte["21"] = {
           "locDna": "Archie hebt sein Glas in Richtung der sinkenden Sonne.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 13,
@@ -508,7 +616,9 @@ hefte["21"] = {
           "locDna": "Die steile Rampe im Abstieg. Das Pflaster glüht förmlich im Abendrot.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_13_P2.jpg",
@@ -517,7 +627,9 @@ hefte["21"] = {
           "locDna": "Felix blickt noch einmal über die Schulter zur thronenden Burg hinauf.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_13_P3.jpg",
@@ -526,7 +638,9 @@ hefte["21"] = {
           "locDna": "Stella lacht leise auf, ein seltener, gelöster Klang.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_13_P4.jpg",
@@ -535,9 +649,12 @@ hefte["21"] = {
           "locDna": "Archie nippt an seinem Martini, die Olive tanzt im Glas.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 14,
@@ -549,7 +666,9 @@ hefte["21"] = {
           "locDna": "Zurück am Strand Playa de Peñíscola. Der Himmel ist jetzt tiefviolett und orange gestreift. Die Burg im Hintergrund ist bereits silhouettenhaft dunkel.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_14_P2.jpg",
@@ -558,7 +677,9 @@ hefte["21"] = {
           "locDna": "Felix spürt den kühlen Sand unter seiner Basis.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_14_P3.jpg",
@@ -567,7 +688,9 @@ hefte["21"] = {
           "locDna": "Stella richtet ihr Harness ein letztes Mal für heute aus.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_14_P4.jpg",
@@ -576,9 +699,12 @@ hefte["21"] = {
           "locDna": "Weite Totale des Strandes. Die vier als kleine Schatten vor der gewaltigen dunklen Masse des Burgfelsens.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 15,
@@ -590,7 +716,9 @@ hefte["21"] = {
           "locDna": "Direkt am Spülsaum der Wellen. Luna steht etwas abseits, die Fühler zum Meer gerichtet.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_15_P2.jpg",
@@ -599,7 +727,9 @@ hefte["21"] = {
           "locDna": "Felix blickt zu Luna.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_15_P3.jpg",
@@ -608,7 +738,9 @@ hefte["21"] = {
           "locDna": "Luna öffnet beide Augen und blickt abwechselnd zur Burg und dann weit hinaus aufs Meer.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_15_P4.jpg",
@@ -617,9 +749,12 @@ hefte["21"] = {
           "locDna": "Sie schließt die Augen wieder und gleitet langsam an der Gruppe vorbei Richtung Festland.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 16,
@@ -631,7 +766,9 @@ hefte["21"] = {
           "locDna": "Abendstimmung über Peñíscola. Die Lichter der Promenade spiegeln sich im Wasser. Die Burg wird nun von Scheinwerfern angestrahlt.",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_16_P2.jpg",
@@ -640,7 +777,9 @@ hefte["21"] = {
           "locDna": "Felix checkt ein letztes Mal sein Handy. Das Foto der Burg leuchtet auf dem Screen.",
           "wide": false,
           "tall": false,
-          "format": "1:1"
+          "format": "1:1",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_16_P3.jpg",
@@ -649,7 +788,9 @@ hefte["21"] = {
           "locDna": "Stella legt sanft eine Antenne auf den Rand seines Handys.",
           "wide": false,
           "tall": false,
-          "format": "3:5"
+          "format": "3:5",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "21_16_P4.jpg",
@@ -658,9 +799,13 @@ hefte["21"] = {
           "locDna": "Epische vertikale Totale der beleuchteten Burg über dem dunklen Meer. Die vier Freunde verschwinden langsam am unteren Bildrand. Ganz oben auf einer Zinne leuchten zwei bernsteinfarbene Fühler auf – Salome beobachtet den Abgang.",
           "wide": false,
           "tall": true,
-          "format": "9:16"
+          "format": "9:16",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     }
-  ]
+  ],
+  "members": false
 };
