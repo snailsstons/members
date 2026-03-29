@@ -28,9 +28,8 @@ hefte["0"] = {
           "story": "",
           "skript": "",
           "caption": "",
-          "members": true,
-          "bonus": true,
-          "level": "silver"
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "0_1_P3.jpg",
@@ -38,9 +37,8 @@ hefte["0"] = {
           "story": "",
           "skript": "",
           "caption": "",
-          "members": true,
-          "bonus": true,
-          "level": "silver"
+          "members": false,
+          "bonus": false
         }
       ],
       "members": false
