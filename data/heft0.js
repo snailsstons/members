@@ -50,5 +50,6 @@ hefte["0"] = {
       "members": false
     }
   ],
-  "members": false
+  "members": true,
+  "level": "silver"
 };
