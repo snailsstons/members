@@ -517,17 +517,30 @@
         const seiten = [];
         let currentSeite = null;
         let currentPanel = null;
+        let currentAkt = '';
         let i = 0;
 
         while (i < lines.length) {
             const line = lines[i];
 
-            // Neue Seite: ## Seite N – Titel  ODER  ## AKT ...
-            const seiteMatch = line.match(/^##\s+Seite\s+(\d+)/);
+            // Akt-Zeile: ## AKT 1 – SETUP: ...
+            const aktMatch = line.match(/^##\s+AKT\s+(\d+)\s*[–-]\s*(.+)/);
+            if (aktMatch) {
+                currentAkt = `AKT ${aktMatch[1]} – ${aktMatch[2].replace(/\(.*\)/, '').trim()}`;
+                i++; continue;
+            }
+
+            // Neue Seite: ## Seite N – Titel
+            const seiteMatch = line.match(/^##\s+Seite\s+(\d+)(?:\s*[–-]\s*(.+))?/);
             if (seiteMatch) {
                 if (currentPanel && currentSeite) currentSeite.panels.push(currentPanel);
                 currentPanel = null;
-                currentSeite = { nummer: parseInt(seiteMatch[1]), panels: [] };
+                currentSeite = {
+                    nummer: parseInt(seiteMatch[1]),
+                    titel: seiteMatch[2] ? seiteMatch[2].trim() : '',
+                    akt: currentAkt || '',
+                    panels: []
+                };
                 seiten.push(currentSeite);
                 i++; continue;
             }
