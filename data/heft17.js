@@ -17,7 +17,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_1_P2.jpg",
@@ -27,7 +29,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_1_P3.jpg",
@@ -37,7 +41,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_1_P4.jpg",
@@ -47,7 +53,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_1_P5.jpg",
@@ -57,9 +65,12 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 2,
@@ -72,7 +83,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_2_P2.jpg",
@@ -82,7 +95,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_2_P3.jpg",
@@ -92,7 +107,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_2_P4.jpg",
@@ -102,7 +119,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_2_P5.jpg",
@@ -112,9 +131,12 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 3,
@@ -127,7 +149,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_3_P2.jpg",
@@ -137,7 +161,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_3_P3.jpg",
@@ -147,7 +173,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_3_P4.jpg",
@@ -157,7 +185,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_3_P5.jpg",
@@ -167,7 +197,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_3_P6.jpg",
@@ -177,9 +209,12 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 4,
@@ -192,7 +227,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_4_P2.jpg",
@@ -202,7 +239,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_4_P3.jpg",
@@ -212,7 +251,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_4_P4.jpg",
@@ -222,7 +263,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_4_P5.jpg",
@@ -232,9 +275,12 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 5,
@@ -247,7 +293,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_5_P2.jpg",
@@ -257,7 +305,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_5_P3.jpg",
@@ -267,7 +317,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_5_P4.jpg",
@@ -277,7 +329,9 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         },
         {
           "bild": "17_5_P5.jpg",
@@ -287,9 +341,12 @@ hefte["17"] = {
           "caption": "",
           "wide": true,
           "tall": false,
-          "format": "16:9"
+          "format": "16:9",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 6,
@@ -299,9 +356,12 @@ hefte["17"] = {
           "locDna": "",
           "story": "",
           "skript": "",
-          "caption": ""
+          "caption": "",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     },
     {
       "nummer": 7,
@@ -311,10 +371,13 @@ hefte["17"] = {
           "locDna": "",
           "story": "",
           "skript": "",
-          "caption": ""
+          "caption": "",
+          "members": false,
+          "bonus": false
         }
-      ]
+      ],
+      "members": false
     }
   ],
-  "members": true
+  "members": false
 };
