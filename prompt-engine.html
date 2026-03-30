@@ -218,7 +218,8 @@
             }
 
             // Initiale Befüllung aus URL Parametern
-            let initialScript = p.get('script') ? decodeURIComponent(p.get('script')) : '';
+            let initialScript = p.get('skript') ? decodeURIComponent(p.get('skript')) : 
+                                p.get('script') ? decodeURIComponent(p.get('script')) : '';
             let initialCaption = p.get('caption') ? decodeURIComponent(p.get('caption')) : '';
 
             if(type !== 'cover') {
@@ -296,7 +297,7 @@
                     const img = document.getElementById('output-image');
                     img.style.opacity = "0";
                     setTimeout(() => {
-                        img.src = `Heft${h}/${pd.bild || `${h}_${seite}_P${panelNum}.jpg`}?v=` + Date.now();
+                        img.src = `heft${h}/${pd.bild || `${h}_${seite}_P${panelNum}.jpg`}?v=` + Date.now();
                         img.onload = () => img.style.opacity = "1";
                     }, 200);
                     
